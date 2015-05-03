@@ -1,10 +1,10 @@
 <?php
 if(!empty($_POST)){
     if($_POST['pseudo'] == 'younes' && $_POST['password'] == 'younes'){
-        addMessageFlash('success', 'Vous vous etes connecté avec succés');
-        var_dump($_SESSION);
+        addMessageFlash(0, 'Vous vous etes connecté avec succés');
+        $_SESSION['user']['pseudo'] = $_POST['pseudo'];
     }else{
-
+        addMessageFlash(1, 'Identifiants incorrect');
     }
 }
 ?>
