@@ -59,7 +59,7 @@ if ($routing[$page]['secure'] === true && !isset($_SESSION['user'])) {
         <ul>
             <li><a href="?page=View/home">Accueil</a></li>
             <li><a href="?page=View/contact">Contact</a></li>
-            <li><?php if(isset($_SESSION['user'])){echo '<a href="?page=View/'.$_GET['page'].'&action=logout">Deconnexion</a>';}else{echo '<a href="?page=View/login">Connexion</a>';} ?></li>
+            <li><?php if(isset($_SESSION['user'])){echo '<a href="?page='.$_GET['page'].'&action=logout">Deconnexion</a>';}else{echo '<a href="?page=View/login">Connexion</a>';} ?></li>
         </ul>
     </nav>
     <div class="wrapper">
