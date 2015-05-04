@@ -4,20 +4,26 @@ require_once __DIR__.'/src/Model/function.php';
 if(isset($_GET['action'])){
     if($_GET['action'] == 'logout'){
         session_destroy();
-        addMessageFlash(0, 'Vous vous etes deconnecté avec succé');
+        header('Location: index.php?page='.$_GET['page'].'&action=logoutSuccess', 302);
+    }elseif($_GET['action'] == 'logoutSuccess'){
+        addMessageFlash(0, 'Vous vous etes déconnecté avec succé');
     }
 }
 $routing = [
-    'home' => [
+    'View/home' => [
         'controller' => 'home',
         'secure' => false,
     ],
-    'contact' => [
+    'View/contact' => [
         'controller' => 'contact',
         'secure' => true,
     ],
-    'login' => [
+    'View/login' => [
         'controller' => 'login',
+        'secure' => false,
+    ],
+    'View/404' => [
+        'controller' => '404',
         'secure' => false,
     ]
 ];
@@ -26,18 +32,18 @@ if (isset($_GET['page'])) {
     $page = $_GET['page'];
     if (!isset($routing[$page])) {
         // la page n'existe pas
-        $page = '404';
+        $page = 'View/404';
     }
 } else {
     //page par defaut
-    $page = 'home';
+    $page = 'View/home';
 }
 //check pour la sécurité : si la page à la clée 'secure' est true et que $_SESSION['name'] n'est pas définis
 if ($routing[$page]['secure'] === true && !isset($_SESSION['user'])) {
     //Met en session un message informatif
     addMessageFlash(3, 'Veuillez-vous connecter afin d\'accéder à cette page');
     //redirection
-    header("location: index.php?page=login");
+    header("location: index.php?page=View/login");
     exit;
 }
 
@@ -51,14 +57,14 @@ if ($routing[$page]['secure'] === true && !isset($_SESSION['user'])) {
 <body>
     <nav>
         <ul>
-            <li><a href="?page=home">Accueil</a></li>
-            <li><a href="?page=contact">Contact</a></li>
-            <li><?php if(isset($_SESSION['user'])){echo '<a href="?page='.$_GET['page'].'&action=logout">Deconnexion</a>';}else{echo '<a href="?page=login">Connexion</a>';} ?></li>
+            <li><a href="?page=View/home">Accueil</a></li>
+            <li><a href="?page=View/contact">Contact</a></li>
+            <li><?php if(isset($_SESSION['user'])){echo '<a href="?page=View/'.$_GET['page'].'&action=logout">Deconnexion</a>';}else{echo '<a href="?page=View/login">Connexion</a>';} ?></li>
         </ul>
     </nav>
     <div class="wrapper">
         <?php
-            include 'src/View/'.$page.'.php';
+            include 'src/'.$page.'.php';
 
         if (isset($_SESSION['flashBag'])) {
             foreach ($_SESSION['flashBag'] as $type => $flash) {
