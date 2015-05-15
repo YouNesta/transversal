@@ -1,0 +1,15 @@
+show_home:
+  controller: Website\Controller\HomeController:showHomeAction
+  secure: false
+show_login:
+  controller: Website\Controller\HomeController:ShowloginAction
+  secure: false
+show_addUser:
+  controller: Website\Controller\HomeController:ShowAddUserAction
+  secure: false
+user_login:
+  controller: Website\Controller\UserController:logUserAction
+  secure: false
+user_add:
+  controller: Website\Controller\UserController:addUserAction
+  secure: false

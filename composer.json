@@ -1,0 +1,22 @@
+{
+  "name": "ProjectName",
+  "description": "Your Project",
+  "autoload": {
+    "psr-0": {"": [
+      "src/",
+      "src/Model"
+    ]}
+  },
+  "require": {
+    "doctrine/dbal": "<2.5",
+    "symfony/yaml": "2.6.*",
+    "components/jquery": "2.1.*",
+    "twitter/bootstrap": "3.3.*"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://packages.zendframework.com/"
+    }
+  ]
+}
