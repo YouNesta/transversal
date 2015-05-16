@@ -11,11 +11,11 @@ namespace Website\Controller;
 
 class HomeController extends AbstractBaseController{
 
-    function __construct(){
+   public function __construct(){
         $this->getConnection();
     }
 
-    function addMessageFlash($type, $message)
+   public function addMessageFlash($type, $message)
     {
         $types = ['success','error','alert','info'];
         if (!isset($types[$type])){
@@ -30,21 +30,27 @@ class HomeController extends AbstractBaseController{
         $_SESSION['flashBag'][$type][] = $message;
     }
 
-    function showHomeAction(){
+   public function showHomeAction(){
 
         return [
             'view' => 'src/Website/View/home.html.php'
         ];
     }
 
-    function showLoginAction(){
+   public function showLoginAction(){
 
         return [
             'view' => 'src/Website/View/login.html.php'
         ];
     }
+    public function showAddUserAction(){
 
-    function showContactAction(){
+        return [
+            'view' => 'src/Website/View/adduser.html.php'
+        ];
+    }
+
+   public function showContactAction(){
 
         return [
             'view' => 'src/Website/View/contact.html.php'

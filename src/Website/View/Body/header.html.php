@@ -17,7 +17,7 @@
     <ul>
         <li><a href="?p=show_home">Accueil</a></li>
         <li><a href="?p=show_contact">Contact</a></li>
-        <li><?php if(isset($_SESSION['user'])){echo '<a href="?p=user_logout">Deconnexion</a>';}else{echo '<a href="?p=show_login">Connexion</a>';} ?></li>
+        <li><?php if(isset($_SESSION['user'])){echo '<a href="?p=user_logout">Deconnexion</a>';}else{echo '<a href="?p=show_login">Connexion</a></li><li><a href="?p=show_addUser">Inscription</a></li>';} ?></li>
     </ul>
 </nav>
 <div class="wrapper">

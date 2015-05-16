@@ -56,7 +56,6 @@ if ($routes[$page]['secure'] === true && !isset($_SESSION['user'])) {
     header("location: index.php?p=show_login");
     exit;
 }
-
 if(isset($response['redirect_to'])){  /** Test Redirection */
     header('Location: '.$response['redirect_to']);
     exit;
@@ -68,5 +67,9 @@ if(isset($response['redirect_to'])){  /** Test Redirection */
     throw new Exception('your action "'.$page.'" do not return a correct response array, should have "view" or "redirect_to"');
 }
 
+echo sha1('bbb');
+echo '<br>';
+echo '5cb138284d431abd6a053a56625ec0
+';
 
 ?>
