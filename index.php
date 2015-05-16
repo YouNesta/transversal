@@ -3,7 +3,6 @@ session_start();
 
 
 require_once __DIR__.'/vendor/autoload.php';
-require_once __DIR__ . '/src/Website/Model/function.php'; //
 
 use Symfony\Component\Yaml\Yaml;
 $routes = Yaml::parse(file_get_contents(__DIR__.'/app/config/routing.yml'));
@@ -39,13 +38,7 @@ if (!empty($routes[$page]['controller'])) {
     throw new Exception('add routing config for '.$page.' in routing.yml');
 }
 
-if ($routes[$page]['secure'] === true && !isset($_SESSION['user'])) {
-    //Met en session un message informatif
-    addMessageFlash(3, 'Veuillez-vous connecter afin d\'accéder à cette page');
-    //redirection
-    header("location: index.php?p=login");
-    exit;
-}
+
 
 
 
@@ -56,6 +49,13 @@ $request['query'] = &$_GET;
 $request['session'] = &$_SESSION;
 
 $response = $controller->$action_name($request);
+if ($routes[$page]['secure'] === true && !isset($_SESSION['user'])) {
+    //Met en session un message informatif
+    $controller->addMessageFlash(3, 'Veuillez-vous connecter afin d\'accéder à cette page');
+    //redirection
+    header("location: index.php?p=show_login");
+    exit;
+}
 
 if(isset($response['redirect_to'])){  /** Test Redirection */
     header('Location: '.$response['redirect_to']);
@@ -64,16 +64,9 @@ if(isset($response['redirect_to'])){  /** Test Redirection */
     require_once 'src/Website/View/Body/header.html.php';
     require_once $response['view'];
     require_once 'src/Website/View/Body/footer.html.php';
-}elseif(!empty($response['flashBag'])){
-
-        echo "<div class='".$response['flashBag']['type']."'>".$response['flashBag']['message']."</div>";
-
-} else {
+}else {
     throw new Exception('your action "'.$page.'" do not return a correct response array, should have "view" or "redirect_to"');
 }
 
 
-
-
-var_dump($response);
 ?>

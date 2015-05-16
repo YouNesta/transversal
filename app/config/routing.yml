@@ -7,9 +7,17 @@ show_login:
 show_addUser:
   controller: Website\Controller\HomeController:ShowAddUserAction
   secure: false
+show_contact:
+  controller: Website\Controller\HomeController:ShowContactAction
+  secure: true
+
+
 user_login:
   controller: Website\Controller\UserController:logUserAction
   secure: false
 user_add:
   controller: Website\Controller\UserController:addUserAction
+  secure: false
+user_logout:
+  controller: Website\Controller\UserController:logOutAction
   secure: false

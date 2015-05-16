@@ -7,9 +7,12 @@
  */
 namespace Website\Model;
 
-class UserManager{
+use Website\Controller\HomeController;
+
+class UserManager extends HomeController{
     function __construct($param){
-        $this->bdd = $param;
+
+        $this->bdd = $this->getConnection();
     }
     function addUser($name, $pass, $email){
         $sql = 'INSERT INTO Users (name, password, email)
@@ -32,5 +35,18 @@ class UserManager{
             "password" => $pass
         ]);
         return $request->fetch();
+    }
+
+    public function logOutAction($request)
+    {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_destroy();
+            $request['session'] = array();
+            return [
+                'redirect_to' => 'index.php?p=home',
+            ];
+
+        }
+
     }
 }

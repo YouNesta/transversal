@@ -8,7 +8,7 @@
 namespace Website\Controller;
 use Website\Model\UserManager;
 
-class UserController extends AbstractBaseController
+class UserController extends HomeController
 {
 
     public function __construct()
@@ -23,9 +23,10 @@ class UserController extends AbstractBaseController
             $users = $userManager->logUser($request['request']['name'],$request['request']['password'] );
             if ($users) {
                 $request['session']['user'] = $users;
+                $this->addMessageFlash(0, 'Vous vous êtes connecté avec succés');
             }
             else{
-
+                $this->addMessageFlash(1, 'Identifiants incorrect');
                 return [
                     'redirect_to' => 'index.php?p=show_login',
                 ];
@@ -35,6 +36,18 @@ class UserController extends AbstractBaseController
         return [
             'redirect_to' => 'index.php?p=show_home'
         ];
+
+    }
+    public function logOutAction($request)
+    {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_destroy();
+            $request['session'] = array();
+            return [
+                'redirect_to' => 'index.php?p=show_home',
+            ];
+
+        }
 
     }
 }
