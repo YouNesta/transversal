@@ -1,0 +1,33 @@
+.nav {
+    height: 15vh;
+    width: 100vw;
+    background-color: #000000;
+    color: #ffffff;
+    display: inline-block;
+
+
+}
+.nav ul{
+    text-align: center;
+}
+.nav ul>li{
+    display: inline-block;
+    line-height: 15vh;
+
+
+}
+.nav a{
+    font-size: 3vh;
+    padding:0 2vw;
+}
+
+.nav a:visited{
+    color: #ffffff;
+
+}
+.wrapper{
+    height: 84vh;
+    padding: 1vh 0 0 1vw;
+    width: 100vw;
+    background-color: orange;
+}

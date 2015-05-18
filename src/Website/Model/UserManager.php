@@ -44,7 +44,7 @@ class UserManager extends HomeController{
         }
         if(!empty($pass)){
             if($pass != $passCheck){
-                $this->addMessageFlash(0, "Votre mot de passe est incorrect");
+                $this->addMessageFlash(1, "Votre mot de passe est incorrect");
             }
         }else{
             $this->addMessageFlash(1, "Vous devez renseigner votre un mots de passe");
@@ -87,35 +87,68 @@ class UserManager extends HomeController{
             ]);
 
 
-            $destinataire =$email;
+            $destinataire ='boulkaddid.younes@gmail.com';
             $sujet = "Lien d'activation";
             $message = "Nom : Transversal \r\n";
-            $message += "Adresse email : contact@transversal.fr\r\n";
-            $message += "Message : "."Veuillez cliquez sur ce lien d'activation pour verifiez votre adresse email\r\n";
+            $message = $message."Adresse email : boulkaddid.younes@gmail.com\r\n";
+            $message = $message."Message : "."Veuillez cliquez sur ce <a href=\"index.php?p=user_enable&enableUser=".sha1($email)."\">lien d'activation</a> pour verifiez votre adresse email\r\n";
             $entete = 'From: '."contact@transversal.fr\r\n".
                 'Reply-To: '."contact@transversal.fr\r\n".
                 'X-Mailer: PHP/'.phpversion();
             if (mail($destinataire,$sujet,$message,$entete)){
                 $this->addMessageFlash(0, "un mail vient d'etre envoyé, pour confirmer votre inscription");
+
                 return $verifForm;
             } else {
                 $this->addMessageFlash(1, "Un probleme est survenur lors de l'inscription, veuillez reessayer ultérieurement");
                 return $verifForm = 'no';
             }
+            echo "'Veuillez cliquez sur ce <a href=\"index.php?p=user_enable&enableUser=".sha1($email)."\">lien d'activation</a>'";
         }
 }
 
 
     function logUser($email, $pass){
-        $sql = 'SELECT email ,password
+        $sql = 'SELECT email ,firstname,email,password,birthday,adress,city,postalCode,subscription,password, stateAccount
                 FROM Users
                 WHERE email = :email AND password = :password';
         $request = $this->bdd->prepare($sql);
         $request->execute([
             "email" => $email,
-            "password" => sha1($pass)
+            "password" => sha1($pass),
+
         ]);
         return $request->fetch();
+    }
+    function enableUser($hashMail){
+
+        $sql = 'SELECT email, stateAccount,firstname,email,password,birthday,adress,city,postalCode,subscription
+                FROM Users';
+        $request = $this->bdd->prepare($sql);
+        $request->execute();
+       $result = $request->fetchAll();
+
+        foreach ($result as $value){
+
+            if(sha1($value['email']) == $hashMail) {
+                if($value['stateAccount'] == 1){
+                    $this->addMessageFlash(1, "Vous avez déja valider votre email");
+                    return [
+                        'verif' => 'no'];
+                }
+                $this->bdd->update('Users', array('stateAccount' => '12'), array('email' => $value['email']));
+                return [
+                    'verif' => 'yes',
+                    'users' => $value];
+                break;
+            }else{
+                $this->addMessageFlash(1, "Votre lien ne correspond a aucun compte");
+                return [
+                    'verif' => 'no'];
+            }
+        }
+
+
     }
 
 

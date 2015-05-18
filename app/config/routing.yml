@@ -9,8 +9,10 @@ show_addUser:
   secure: false
 show_contact:
   controller: Website\Controller\HomeController:ShowContactAction
+  secure: false
+show_profilUser:
+  controller: Website\Controller\HomeController:ShowProfilAction
   secure: true
-
 
 user_login:
   controller: Website\Controller\UserController:logUserAction
@@ -20,4 +22,7 @@ user_add:
   secure: false
 user_logout:
   controller: Website\Controller\UserController:logOutAction
+  secure: true
+user_enable:
+  controller: Website\Controller\UserController:enableUserAction
   secure: false

@@ -10,16 +10,29 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>Transversal
+    </title>
+    <link rel="stylesheet" href="asset/css/style.css"/>
+    <link rel="stylesheet" href="asset/css/reset.css"/>
 </head>
 <body>
-<nav>
+<div class="nav">
     <ul>
         <li><a href="?p=show_home">Accueil</a></li>
+        <?php if(isset($_SESSION['user'])) {
+                    echo '<li><a href="?p=user_logout">Deconnexion</a></li>
+                        <li><a href="?p=show_profilUser">Profil</a></li>';
+                ?>
         <li><a href="?p=show_contact">Contact</a></li>
-        <li><?php if(isset($_SESSION['user'])){echo '<a href="?p=user_logout">Deconnexion</a>';}else{echo '<a href="?p=show_login">Connexion</a></li><li><a href="?p=show_addUser">Inscription</a></li>';} ?></li>
+        <? }else {
+                echo '<li><a href="?p=show_login">Connexion</a></li><li><a href="?p=show_addUser">Inscription</a></li>';
+
+
+            }
+            ?>
+
     </ul>
-</nav>
+</div>
 <div class="wrapper">
        <?php
         if (isset($_SESSION['flashBag'])) {
