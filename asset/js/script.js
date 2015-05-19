@@ -20,7 +20,7 @@
             });
         });
         $('.wrapperLeft').animate({
-            width:"20vw"
+            width:"18vw"
         }, 1000);
     }else{
         $("#contentWL>img").attr('src','asset/images/contentWL/'+anchor+'.png')
@@ -32,7 +32,7 @@
             }
         });
         $('.wrapperLeft').animate({
-            width:"20vw"
+            width:"18vw"
         }, 1000);
         $( "#contentWL").animate({
             opacity:"100"

@@ -18,6 +18,7 @@ a{
     .nav ul{
         text-align: center;
         font-size: 3vh;
+        margin-left: 10vw;
     }
         .nav ul>li{
             display: inline-block;
@@ -53,6 +54,10 @@ a{
             .nav li>a[href="index.php#"]{
                 background-image: url("../images/header/Logo.png");
                 background-size: 7vh;
+            }
+            .nav li>a[href="?p=user_login"]{
+                background-image: url("../images/header/userLogin.png");
+                background-size: 8vh;
             }
 
 .wrapper{
@@ -92,8 +97,8 @@ a{
 
 }
 #contentWL{
-    height: 90vh;
-    width: 20vw;
+    height: 80vh;
+    width: 18vw;
 
     opacity: 0;
     margin-bottom: 10vh;
@@ -103,10 +108,10 @@ a{
     margin:0;
     padding: 0;
     position: absolute;
-    top: 25vh;
-    left: 30vw;
-    height: 65vh;
-    width: 60vw;
+    top: 22.5vh;
+    left: 25vw;
+    height: 70vh;
+    width: 65vw;
 }
     .wrapperRight form[action="?p=user_login"]{
         margin-top: 20vh;
@@ -132,7 +137,7 @@ a{
     border-width: 1vh 1vw ;
     border-style: solid;
     border-color: #d6d69b;
-    height: 12.5vh;
+    height: 10vh;
     width: 58vw;
     background-color: #fdfdb5;
     color: black;
@@ -141,28 +146,20 @@ a{
     overflow: hidden;
 }
 .flashBag[role="0"]{
-    top: 10vh;
-    clear: both;
-    left: 30vw;
-    position: absolute;
-    border-width: 1vh 1vw ;
-    border-style: solid;
-    border-color: #d6d69b;
-    height: 12.5vh;
-    width: 58vw;
-    background-color: #fdfdb5;
-    color: black;
-    font-size: 4vh;
-    text-align: center;
-    overflow: scroll;
-
+    color: #003300;
 }
 .flashBag[role="1"]{
-    border-color: #d6d69b;
     color: red;
 }
 .flashBag[role="3"]{
-    border-color: #d6d69b;
     color: #000000;
+}
+#footer{
+    position: absolute;
+    bottom: 0.5vh;
+    right: 0.5vh;
+}
+#footer img{
+    height: 4vh;
 }
 

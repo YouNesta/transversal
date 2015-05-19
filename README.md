@@ -1,2 +1,2 @@
 # transversal
-Nothing to read
+Conection to bdd -> app/config/config_prod.yml

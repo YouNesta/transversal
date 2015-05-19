@@ -24,7 +24,7 @@
         <li><a id="catalog" href="#">Catalogue</a></li>
         <li><a id="profil" href="#">Profil</a></li> <!-- href="?p=show_profilUser" -->
         <li><a href="index.php#"></a></li>
-        <?php if(isset($_SESSION['user'])) {echo '<li><a href="?p=user_logout">Deconnexion</a></li>';}else{echo '<li><a href="?p=show_addUser">Inscription</a></li>';}?>
+        <?php if(isset($_SESSION['user'])) {echo '<li><a href="?p=user_logout">Deconnexion</a></li>';}else{echo '<li><a href="?p=user_login">Connexion</a></li><li><a href="?p=show_addUser">Inscription</a></li>';}?>
         <li><a href="?p=show_contact">Contact</a></li>
     </ul>
 </div>
