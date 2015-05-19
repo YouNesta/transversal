@@ -1,9 +1,6 @@
 show_home:
   controller: Website\Controller\HomeController:showHomeAction
   secure: false
-show_login:
-  controller: Website\Controller\HomeController:ShowloginAction
-  secure: false
 show_addUser:
   controller: Website\Controller\HomeController:ShowAddUserAction
   secure: false
@@ -22,7 +19,7 @@ user_add:
   secure: false
 user_logout:
   controller: Website\Controller\UserController:logOutAction
-  secure: true
+  secure: false
 user_enable:
   controller: Website\Controller\UserController:enableUserAction
   secure: false

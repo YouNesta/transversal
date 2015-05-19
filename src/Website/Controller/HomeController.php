@@ -15,7 +15,7 @@ class HomeController extends AbstractBaseController{
         $this->getConnection();
     }
 
-   public function addMessageFlash($type, $message)
+    public function addMessageFlash($type, $message)
     {
         $types = ['success','error','alert','info'];
         if (!isset($types[$type])){
@@ -37,12 +37,6 @@ class HomeController extends AbstractBaseController{
         ];
     }
 
-   public function showLoginAction(){
-
-        return [
-            'view' => 'src/Website/View/login.html.php'
-        ];
-    }
     public function showAddUserAction(){
 
         return [

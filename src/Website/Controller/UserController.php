@@ -15,6 +15,8 @@ class UserController extends HomeController
     {
         $this->bdd = $this->getConnection();
     }
+
+
     public function addUserAction($request)
     {
         if ($request['request']) {
@@ -55,21 +57,24 @@ class UserController extends HomeController
                 if($users['stateAccount']== 0){
                     $this->addMessageFlash(1, "Vous n'avez pas encore confirmé votre email");
                     return [
-                        'redirect_to' => 'index.php?p=show_login',
+                        'redirect_to' => 'index.php?p=user_login',
                     ];
                 }
                 $request['session']['user'] = $users;
                 $this->addMessageFlash(0, 'Vous vous êtes connecté avec succés');
+                return [
+                    'redirect_to' => 'index.php?p=show_home',
+                ];
             }
             else{
                 $this->addMessageFlash(1, 'Identifiants incorrect');
                 return [
-                    'redirect_to' => 'index.php?p=show_login',
+                    'redirect_to' => 'index.php?p=user_login',
                 ];
             }
         }
         return [
-            'redirect_to' => 'index.php?p=show_home'
+            'view' => 'src/Website/View/login.html.php'
         ];
 
     }
@@ -78,7 +83,9 @@ class UserController extends HomeController
     {
         if (session_status() === PHP_SESSION_ACTIVE) {
             session_destroy();
-            $request['session'] = array();
+            session_start();
+            $this->addMessageFlash(1, 'Vous vous êtes correctement déconnecté');
+            $request['session']['user'] = array();
             return [
                 'redirect_to' => 'index.php?p=show_home',
             ];

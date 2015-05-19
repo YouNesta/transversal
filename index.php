@@ -20,14 +20,7 @@ if(!empty($_GET['p'])){
 }
 
 
-if(isset($_GET['action'])){
-    if($_GET['action'] == 'logout'){
-        session_destroy();
-        header('Location: index.php?page='.$page.'&action=logoutSuccess', 302);
-    }elseif($_GET['action'] == 'logoutSuccess'){
-        addMessageFlash(0, 'Vous vous etes déconnecté avec succé');
-    }
-}
+
 
 
 
@@ -43,19 +36,20 @@ if (!empty($routes[$page]['controller'])) {
 
 
 $controller = new $controller_class();
-
+if (
+    $routes[$page]['secure'] === true && !isset($_SESSION['user'])) {
+    //Met en session un message informatif
+    $controller->addMessageFlash(3, 'Veuillez-vous connecter afin d\'accéder à cette page');
+    //redirection
+    header("location: index.php?p=user_login");
+    exit;
+}
 $request['request'] = &$_POST;
 $request['query'] = &$_GET;
 $request['session'] = &$_SESSION;
 
 $response = $controller->$action_name($request);
-if ($routes[$page]['secure'] === true && !isset($_SESSION['user'])) {
-    //Met en session un message informatif
-    $controller->addMessageFlash(3, 'Veuillez-vous connecter afin d\'accéder à cette page');
-    //redirection
-    header("location: index.php?p=show_login");
-    exit;
-}
+
 
 if(isset($response['redirect_to'])){  /** Test Redirection */
     header('Location: '.$response['redirect_to']);
@@ -67,7 +61,4 @@ if(isset($response['redirect_to'])){  /** Test Redirection */
 }else {
     throw new Exception('your action "'.$page.'" do not return a correct response array, should have "view" or "redirect_to"');
 }
-
-echo "index.php?p=user_enable&enableUser=".sha1('younes@gmail.com').""
-
 ?>

@@ -1,5 +1,5 @@
-<form action="index.php?p=user_login" method="post">
-    <input type="email" name="email"/>
-    <input type="password" name="password"/>
+<form action="?p=user_login" method="post">
+    <input type="email" name="email"/><br>
+    <input type="password" name="password"/><br/>
     <input type="submit" value="Valider" name="submit"/>
 </form>

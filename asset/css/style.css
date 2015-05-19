@@ -1,5 +1,13 @@
+a:visited{
+    color: #ffffff;
+    text-decoration: none;
+}
+a{
+    color: #ffffff;
+    text-decoration: none;
+}
 .nav {
-    height: 15vh;
+    height: 10vh;
     width: 100vw;
     background-color: #000000;
     color: #ffffff;
@@ -7,27 +15,154 @@
 
 
 }
-.nav ul{
+    .nav ul{
+        text-align: center;
+        font-size: 3vh;
+    }
+        .nav ul>li{
+            display: inline-block;
+            line-height: 10vh;
+            min-width: 10vw;
+        }
+            .nav li>a{
+                padding: 3vh;
+                background-repeat: no-repeat;
+                background-position: center;
+
+            }
+            .nav #profil{
+                background-image: url("../images/header/profil.png");
+                background-size: 6vh;
+            }
+            .nav li>a[href="?p=user_logout"]{
+                background-image: url("../images/header/UserLogout.png");
+                background-size: 6vh;
+            }
+            .nav li>a[href="?p=show_addUser"]{
+                 background-image: url("../images/header/UserAdd.png");
+                 background-size: 6vh;
+             }
+            .nav li>a[href="?p=show_contact"]{
+                background-image: url("../images/header/contact.png");
+                background-size: 8vh;
+            }
+            .nav li>a[href="#"]{
+                background-image: url("../images/header/catalog.png");
+                background-size: 7vh;
+            }
+            .nav li>a[href="index.php#"]{
+                background-image: url("../images/header/Logo.png");
+                background-size: 7vh;
+            }
+
+.wrapper{
+     height: 90vh;
+     width: 100vw;
+     background-repeat: no-repeat;
+     background-image: url("../images/background.jpg");
+     background-size: 100vw 90vh;
+ }
+.wrapperLeft{
+    height: 90vh;
+    width: 0;
+    background-color: rgba(66,66,66,0.5);
+    float: left;
     text-align: center;
 }
-.nav ul>li{
-    display: inline-block;
-    line-height: 15vh;
+            .wrapperLeft div:first-child>img{
+                border :10px solid #ffffff;
+                border-radius: 50%;
+                background-color: black;
+                display: inline-block;
+                height: 11vh;
+                width: 5.5vw;
+                padding: 1vw;
+                margin-top: 5vh;
 
+            }
+    .wrapperLeft h2{
+        margin-top: 5vh;
+        font-size: 4vh;
 
-}
-.nav a{
+    }
+.wrapperLeft ul>li{
     font-size: 3vh;
-    padding:0 2vw;
-}
-
-.nav a:visited{
-    color: #ffffff;
+    border-bottom: 1px solid grey;
+    margin: 0 auto 2vh auto;
 
 }
-.wrapper{
-    height: 84vh;
-    padding: 1vh 0 0 1vw;
-    width: 100vw;
-    background-color: orange;
+#contentWL{
+    height: 90vh;
+    width: 20vw;
+
+    opacity: 0;
+    margin-bottom: 10vh;
 }
+.wrapperRight{
+    background-color: rgba(66,66,66,0.5);
+    margin:0;
+    padding: 0;
+    position: absolute;
+    top: 25vh;
+    left: 30vw;
+    height: 65vh;
+    width: 60vw;
+}
+    .wrapperRight form[action="?p=user_login"]{
+        margin-top: 20vh;
+        text-align: center;
+        height: 10vh;
+    }
+    .wrapperRight form[action="?p=user_login"]>input{
+        height: 5vh;
+        width: 15vw;
+        font-size: 5vh;
+        margin-top:1vh;
+    }
+    .wrapperRight form[action="?p=user_login"] input[type="submit"]{
+        border:0 none;
+        background-color: #000000;
+        color: white;
+        padding:0 0 5vw 0;  }
+.flashBag{
+    top: 10vh;
+    clear: both;
+    left: 30vw;
+    position: absolute;
+    border-width: 1vh 1vw ;
+    border-style: solid;
+    border-color: #d6d69b;
+    height: 12.5vh;
+    width: 58vw;
+    background-color: #fdfdb5;
+    color: black;
+    font-size: 4vh;
+    text-align: center;
+    overflow: hidden;
+}
+.flashBag[role="0"]{
+    top: 10vh;
+    clear: both;
+    left: 30vw;
+    position: absolute;
+    border-width: 1vh 1vw ;
+    border-style: solid;
+    border-color: #d6d69b;
+    height: 12.5vh;
+    width: 58vw;
+    background-color: #fdfdb5;
+    color: black;
+    font-size: 4vh;
+    text-align: center;
+    overflow: scroll;
+
+}
+.flashBag[role="1"]{
+    border-color: #d6d69b;
+    color: red;
+}
+.flashBag[role="3"]{
+    border-color: #d6d69b;
+    color: #000000;
+}
+
