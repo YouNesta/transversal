@@ -1,6 +1,7 @@
-# transversal
+# Transversal Project
 
 Connection to bdd -> app/config/config_prod.yml
+
 Routing -> app/config/routing.yml
 
 Controller -> src/Website/Controller
