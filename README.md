@@ -1,43 +1,70 @@
 # Transversal Project
 
-Connection to bdd 
+Connection to bdd
+
     -> app/config/config_prod.yml
 
 Routing
+
     -> app/config/routing.yml
 
 
 Controller
+
     -> src/Website/Controller
 
 
 Model
+
     -> src/Website/Model
 
 
 View
+
     -> src/Website/Model
 
-    View Header/Footer -> src/Website/View/Body
 
-    View WrapperLeft -> src/Website/View/contentWL
+    View Header/Footer
 
-
-Javascript Files -> asset/js
+        -> src/Website/View/Body
 
 
-CSS Files -> asset/css
+    View WrapperLeft
+
+        -> src/Website/View/contentWL
 
 
-Images Files -> asset/images
+Javascript Files
 
-    Images Background -> asset/images/background.jpg
+    -> asset/js
 
-    Images WrapperLeft -> asset/images/contentWL
 
-    Images footer -> asset/images/footer
+CSS Files
 
-    Images header -> asset/images/header
+    -> asset/css
 
-    Images headerOn -> asset/images/headerOn
+
+Images Files
+
+    -> asset/images
+
+    Images Background
+
+        -> asset/images/background.jpg
+
+    Images WrapperLeft
+
+        -> asset/images/contentWL
+
+    Images footer
+
+        -> asset/images/footer
+
+    Images header
+
+        -> asset/images/header
+
+    Images headerOn
+
+        -> asset/images/headerOn
 
