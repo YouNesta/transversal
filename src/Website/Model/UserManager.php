@@ -38,59 +38,62 @@ class UserManager extends UserController{
     }
     function addUser($lastname, $firstname, $birth, $email, $pass, $passCheck,$adress,$ville, $postalCode,$subscription){
         $verifForm = 'ok';
-
+        $errorLog = [];
         if(!empty($lastname)){}else{
-            $this->addMessageFlash(1, "Vous n'avez pas renseigné votre nom");
+            $errorLog[]="Vous n'avez pas renseigné votre nom";
             $verifForm = 'no';
         }
         if(!empty($firstname)){}else{
-            $this->addMessageFlash(1, "Vous n'avez pas renseigné votre prenom");
+
+            $errorLog[]="Vous n'avez pas renseigné votre prenom";
             $verifForm = 'no';
         }
         if(!empty($birth)){}else{
-            $this->addMessageFlash(1, "Vous n'avez pas renseigné votre Date de naissance");
+            $errorLog[]="Vous n'avez pas renseigné votre Date de naissance";
             $verifForm = 'no';
         }
         if(!empty($email)){
 
             if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
             } else {
-                $this->addMessageFlash(1, "Vous n'avez pas renseigné un email valide");
+                $errorLog[]="Vous n'avez pas renseigné un email valide";
                 $verifForm = 'no';
             }
 
-
         }else{
-            $this->addMessageFlash(1, "Vous devez renseigner votre adresse email");
+            $errorLog[]="Vous devez renseigner votre adresse email";
             $verifForm = 'no';
         }
         if(!empty($pass)){
             if($pass != $passCheck){
-                $this->addMessageFlash(1, "Votre mot de passe est incorrect");
+                $errorLog[]="Votre mot de passe est incorrect";
             }
         }else{
-            $this->addMessageFlash(1, "Vous devez renseigner votre un mots de passe");
+            $errorLog[]="Vous devez renseigner votre un mots de passe";
             $verifForm = 'no';
         }
         if(!empty($adress)){}else{
-            $this->addMessageFlash(1, "Vous n'avez pas renseigné votre adresse");
+            $errorLog[]="Vous n'avez pas renseigné votre adresse";
             $verifForm = 'no';
         }
         if(!empty($ville)){}else{
-            $this->addMessageFlash(1, "Vous n'avez pas renseigné votre Ville");
+            $errorLog[]="Vous n'avez pas renseigné votre Ville";
             $verifForm = 'no';
 
         }
         if(!empty($postalCode)){}else{
-            $this->addMessageFlash(1, "Vous n'avez pas renseigné votre code postal");
+            $errorLog[]="Vous n'avez pas renseigné votre code postal";
             $verifForm = 'no';
         }
         if(empty($subscription)){
-            $this->addMessageFlash(1, "Vous n'avez pas renseigner votre types d'abonnement");
+            $errorLog[]="Vous n'avez pas renseigner votre types d'abonnement";
             $verifForm = 'no';
         }
         if($verifForm == 'no'){
-            return $verifForm;
+            return [
+                'verifForm'=> $verifForm,
+                'errorLog' => $errorLog
+            ];
         }else{
 
             $sql = 'INSERT INTO Users (lastname, firstname,birthday, email, password,  adress, city, postalCode, subscription)
@@ -118,12 +121,15 @@ class UserManager extends UserController{
                 'Reply-To: '."contact@transversal.fr\r\n".
                 'X-Mailer: PHP/'.phpversion();
             if (mail($destinataire,$sujet,$message,$entete)){
-                $this->addMessageFlash(0, "un mail vient d'etre envoyé, pour confirmer votre inscription");
-
-                return $verifForm;
+                return [
+                    'verifForm'=> $verifForm,
+                    'mailCheck' => 'yes'
+                ];
             } else {
-                $this->addMessageFlash(1, "Un probleme est survenur lors de l'inscription, veuillez reessayer ultérieurement");
-                return $verifForm = 'no';
+                return [
+                    'verifForm'=> $verifForm,
+                    'mailCheck' => 'no'
+                ];
             }
             echo "'Veuillez cliquez sur ce <a href=\"index.php?p=user_enable&enableUser=".sha1($email)."\">lien d'activation</a>'";
         }
@@ -131,7 +137,7 @@ class UserManager extends UserController{
 
 
     function logUser($email, $pass){
-        $sql = 'SELECT id, email ,firstname,email,birthday,adress,city,postalCode,subscription,password, stateAccount
+        $sql = 'SELECT id, email,lastname ,firstname,email,birthday,adress,city,postalCode,subscription,stateAccount
                 FROM Users
                 WHERE email = :email AND password = :password';
         $request = $this->bdd->prepare($sql);
@@ -140,7 +146,18 @@ class UserManager extends UserController{
             "password" => sha1($pass),
 
         ]);
-        return $request->fetch();
+        $result = $request->fetch();
+        if( $result){
+            $sql = 'SELECT *
+                FROM Subscription
+                WHERE id = :id';
+            $request = $this->bdd->prepare($sql);
+            $request->execute([
+                "id" => $result['subscription']
+            ]);
+            $result['subscription'] = $request->fetch();
+        }
+        return $result;
     }
     function enableUser($hashMail){
 

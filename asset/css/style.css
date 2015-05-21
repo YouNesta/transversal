@@ -26,7 +26,7 @@ a{
             min-width: 10vw;
         }
             .nav li>a{
-                padding: 3vh;
+                padding: 3vh 5vw;
                 background-repeat: no-repeat;
                 background-position: center;
 
@@ -67,72 +67,72 @@ a{
      background-image: url("../images/background.jpg");
      background-size: 100vw 90vh;
  }
-.wrapperLeft{
-    height: 90vh;
-    width: 0;
-    background-color: rgba(66,66,66,0.5);
-    float: left;
-    text-align: center;
-}
-            .wrapperLeft div:first-child>img{
-                border :10px solid #ffffff;
-                border-radius: 50%;
-                background-color: black;
-                display: inline-block;
-                height: 11vh;
-                width: 5.5vw;
-                padding: 1vw;
-                margin-top: 5vh;
+    .wrapperLeft{
+        height: 90vh;
+        width: 0;
+        background-color: rgba(66,66,66,0.5);
+        float: left;
+        text-align: center;
+    }
+                .wrapperLeft div:first-child>img{
+                    border :10px solid #ffffff;
+                    border-radius: 50%;
+                    background-color: black;
+                    display: inline-block;
+                    height: 11vh;
+                    width: 5.5vw;
+                    padding: 1vw;
+                    margin-top: 5vh;
+
+                }
+        .wrapperLeft h2{
+            margin-top: 5vh;
+            font-size: 4vh;
+
+        }
+            .wrapperLeft ul>li{
+                font-size: 3vh;
+                border-bottom: 1px solid grey;
+                margin: 0 auto 2vh auto;
 
             }
-    .wrapperLeft h2{
-        margin-top: 5vh;
-        font-size: 4vh;
+    #contentWL{
+        height: 80vh;
+        width: 18vw;
 
+        opacity: 0;
+        margin-bottom: 10vh;
     }
-.wrapperLeft ul>li{
-    font-size: 3vh;
-    border-bottom: 1px solid grey;
-    margin: 0 auto 2vh auto;
-
-}
-#contentWL{
-    height: 80vh;
-    width: 18vw;
-
-    opacity: 0;
-    margin-bottom: 10vh;
-}
-.wrapperRight{
-    background-color: rgba(66,66,66,0.5);
-    margin:0;
-    padding: 0;
-    position: absolute;
-    top: 22.5vh;
-    left: 19vw;
-    height: 70vh;
-    width: 65vw;
-}
-    .wrapperRight form[action="?p=user_login"]{
-        margin-top: 20vh;
-        text-align: center;
-        height: 10vh;
+    .wrapperRight{
+        background-color: rgba(66,66,66,0.5);
+        margin:0;
+        padding: 0;
+        position: absolute;
+        top: 22.5vh;
+        left: 19vw;
+        height: 70vh;
+        width: 65vw;
     }
-    .wrapperRight form[action="?p=user_login"]>input{
-        height: 5vh;
-        width: 15vw;
-        font-size: 5vh;
-        margin-top:1vh;
-    }
-    .wrapperRight form[action="?p=user_login"] input[type="submit"]{
-        border:0 none;
-        background-color: #000000;
-        color: white;
-        padding:0 0 5vw 0;  }
+        .wrapperRight form[action="?p=user_login"]{
+            margin-top: 20vh;
+            text-align: center;
+            height: 10vh;
+        }
+        .wrapperRight form[action="?p=user_login"]>input{
+            height: 5vh;
+            width: 15vw;
+            font-size: 5vh;
+            margin-top:1vh;
+        }
+        .wrapperRight form[action="?p=user_login"] input[type="submit"]{
+            border:0 none;
+            background-color: #000000;
+            color: white;
+            padding:0 0 5vw 0;  }
 .flashBag{
     top: 10vh;
     clear: both;
-    left: 21.5vw;
+    left: 20vw;
     position: absolute;
     border-width: 1vh 1vw ;
     border-style: solid;
@@ -145,19 +145,19 @@ a{
     text-align: center;
     overflow: hidden;
 }
-.flashBag[role="0"]{
-    color: #003300;
-}
-.flashBag[role="1"]{
-    color: red;
-}
-.flashBag[role="3"]{
-    color: #000000;
-}
-#footer{
-    position: absolute;
-    bottom: 0.5vh;
-    right: 0.5vh;
+    .flashBag[role="0"]{
+        color: #003300;
+    }
+    .flashBag[role="1"]{
+        color: red;
+    }
+    .flashBag[role="3"]{
+        color: #000000;
+    }
+    #footer{
+        position: absolute;
+        bottom: 0.5vh;
+        right: 0.5vh;
 }
 #footer img{
     height: 4vh;

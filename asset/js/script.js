@@ -6,11 +6,11 @@
         $('.wrapperLeft').attr('is-open', 'true')
         $('.wrapperLeft').animate({
             width:"00vw"
-        }, 2000);
-        $( "#contentWL" ).fadeTo( 2400 , 0, function() {
+        }, 1000);
+        $( "#contentWL" ).fadeTo( 1200 , 0, function() {
             $(this).animate({
                 opacity:"100"
-            }, 2000);
+            }, 1000);
             $("#contentWL>img").attr('src','asset/images/contentWL/'+anchor+'.png')
             $.ajax({
                 type: "GET",
@@ -59,21 +59,32 @@ $(function() {
     if(sessionStorage.getItem('currentPage') != null){
         var id = sessionStorage.getItem('currentPage');
         changebackgroundOn('#'+id);
-        if(id == 'userAdd' || id == 'profil' || id == 'userLogin'){
+        if(id == 'userAdd' || id == 'profil'){
             OpenTab('profil');
+        }else if(id == 'userLogin'){
+            OpenTab('profil');
+            changebackgroundOn('#'+'userLogout');
+            changebackgroundOn('#'+id);
+        }else if(id == 'userLogout'){
+            changebackgroundOn('#'+'userLogin');
+            OpenTab('catalog');
         }else{
             OpenTab('catalog');
         }
     }else{
+        sessionStorage.setItem('currentPage','catalog');
         changebackgroundOn('#catalog');
         OpenTab('catalog');
     }
     $('.nav ul li>a').click(function (){
         var id =  $(this).attr('id');
-        var lastPage = '#'+sessionStorage.getItem('currentPage');
-        changebackgroundOff(lastPage);
-        changebackgroundOn($(this));
-        sessionStorage.setItem('currentPage',id);
-        OpenTab(id);
+        if(id != 'logo'){
+            var lastPage = '#'+sessionStorage.getItem('currentPage');
+            changebackgroundOff(lastPage);
+            changebackgroundOn($(this));
+            sessionStorage.setItem('currentPage',id);
+            OpenTab(id);
+        }
+
     })
 });

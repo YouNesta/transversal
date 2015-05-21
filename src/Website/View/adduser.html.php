@@ -20,3 +20,18 @@
     <input type="radio" name="subscription" value=3> Premium <br/>
     <input type="submit" value="submit"/>
 </form>
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Younes
+ * Date: 16/05/15
+ * Time: 16:02
+ */
+        if (isset($response['errorLog'])) {
+            echo '<div class="errorLog">';
+            foreach ($response['errorLog'] as $flash) {
+                    echo  $flash.'<br>';
+                }
+            echo'</div>';
+        }
+?>

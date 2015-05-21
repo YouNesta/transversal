@@ -55,7 +55,7 @@ class UserController extends HomeController
     {
         if ($request['request']) {
             $userManager = new UserManager($this->getConnection());
-            $verifForm = $userManager->addUser(
+            $response = $userManager->addUser(
                 $request['request']['lastname'],
                 $request['request']['firstname'],
                 $request['request']['year'].'-'.$request['request']['month'].'-'.$request['request']['day'],
@@ -67,13 +67,23 @@ class UserController extends HomeController
                 $request['request']['postalCode'],
                 $request['request']['subscription']
             );
-            if($verifForm == 'ok'){
-                return [
-                    'redirect_to' => 'index.php?p=show_home'
-                ];
+            if($response['verifForm'] == 'ok'){
+                if($response['mailCheck'] == 'yes'){
+                    $this->addMessageFlash(0, "un mail vient d'etre envoyé, pour confirmer votre inscription");
+                    return [
+                        'redirect_to' => 'index.php?p=show_home'
+                    ];
+                }else{
+                    $this->addMessageFlash(1, "Un probleme est survenur lors de l'inscription, veuillez reessayer ultérieurement");
+                    return [
+                        'redirect_to' => 'index.php?p=user_add'
+                    ];
+                }
+
             }else{
                 return [
-                    'redirect_to' => 'index.php?p=user_add'
+                    'view' => 'src/Website/View/adduser.html.php',
+                    'errorLog' => $response['errorLog']
                 ];
             }
         }
@@ -96,6 +106,7 @@ class UserController extends HomeController
         if ($request['request']) {
             $userManager = new UserManager($this->getConnection());
             $users = $userManager->logUser($request['request']['email'],$request['request']['password'] );
+
             if ($users) {
                 if($users['stateAccount']== 0){
                     $this->addMessageFlash(1, "Vous n'avez pas encore confirmé votre email");
@@ -161,5 +172,12 @@ class UserController extends HomeController
             'redirect_to' => 'index.php?p=show_home'
         ];
 
+    }
+
+    public function ShowProfilAction($request){
+
+        return [
+            'view' => 'src/Website/View/userProfil.html.php'
+        ];
     }
 }

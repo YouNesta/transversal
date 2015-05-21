@@ -14,6 +14,7 @@
     </title>
     <link rel="stylesheet" href="asset/css/style.css"/>
     <link rel="stylesheet" href="asset/css/reset.css"/>
+    <link rel="stylesheet" media="screen and (max-width: 700px)" href="asset/css/smallstyle.css" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     <script src="asset/js/script.js"></script>
@@ -21,11 +22,11 @@
 <body>
 <div class="nav">
     <ul>
-        <li><a id="catalog" href="#">Catalogue</a></li>
-        <li><a id="profil" href="#">Profil</a></li> <!-- href="?p=show_profilUser" -->
-        <li><a href="index.php#"></a></li>
-        <?php if(isset($_SESSION['user'])) {echo '<li><a href="?p=user_logout">Deconnexion</a></li>';}else{echo '<li><a id="userLogin" href="?p=user_login">Connexion</a></li><li><a id="userAdd" href="?p=user_add">Inscription</a></li>';}?>
-        <li><a id="contact" href="?p=show_contact">Contact</a></li>
+        <li><a id="catalog" href="#"></a></li>
+        <li><a id="profil" href="#"></a></li> <!-- href="?p=show_profilUser" -->
+        <li><a id="logo" href="index.php#"></a></li>
+        <?php if(isset($_SESSION['user'])) {echo '<li><a id="userLogout" href="?p=user_logout"></a></li>';}else{echo '<li><a id="userLogin" href="?p=user_login"></a></li><li><a id="UserAdd" href="?p=user_add"></a></li>';}?>
+        <li><a id="contact" href="?p=show_contact"></a></li>
     </ul>
 </div>
 <div class="wrapper">
@@ -33,7 +34,6 @@
         <div  id="contentWL" is-open='false'>
             <img src="" alt="Logo"/>
             <div id="navWL"></div>
-
         </div>
     </div>
         <div class="alert">
