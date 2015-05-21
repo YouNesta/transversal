@@ -1,21 +1,26 @@
 # Transversal Project
 
-Connection to bdd -> app/config/config_prod.yml
+Connection to bdd 
+    -> app/config/config_prod.yml
 
-Routing -> app/config/routing.yml
-
-
-Controller -> src/Website/Controller
-
-
-Model -> src/Website/Model
+Routing
+    -> app/config/routing.yml
 
 
-View -> src/Website/View
+Controller
+    -> src/Website/Controller
 
-   View Header/Footer -> src/Website/View/Body
 
-   View WrapperLeft -> src/Website/View/contentWL
+Model
+    -> src/Website/Model
+
+
+View
+    -> src/Website/Model
+
+    View Header/Footer -> src/Website/View/Body
+
+    View WrapperLeft -> src/Website/View/contentWL
 
 
 Javascript Files -> asset/js
