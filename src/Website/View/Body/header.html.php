@@ -24,13 +24,13 @@
         <li><a id="catalog" href="#">Catalogue</a></li>
         <li><a id="profil" href="#">Profil</a></li> <!-- href="?p=show_profilUser" -->
         <li><a href="index.php#"></a></li>
-        <?php if(isset($_SESSION['user'])) {echo '<li><a href="?p=user_logout">Deconnexion</a></li>';}else{echo '<li><a href="?p=user_login">Connexion</a></li><li><a href="?p=show_addUser">Inscription</a></li>';}?>
-        <li><a href="?p=show_contact">Contact</a></li>
+        <?php if(isset($_SESSION['user'])) {echo '<li><a href="?p=user_logout">Deconnexion</a></li>';}else{echo '<li><a id="userLogin" href="?p=user_login">Connexion</a></li><li><a id="userAdd" href="?p=user_add">Inscription</a></li>';}?>
+        <li><a id="contact" href="?p=show_contact">Contact</a></li>
     </ul>
 </div>
 <div class="wrapper">
     <div class="wrapperLeft">
-        <div  id="contentWL">
+        <div  id="contentWL" is-open='false'>
             <img src="" alt="Logo"/>
             <div id="navWL"></div>
 

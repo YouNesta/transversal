@@ -39,7 +39,7 @@ a{
                 background-image: url("../images/header/UserLogout.png");
                 background-size: 6vh;
             }
-            .nav li>a[href="?p=show_addUser"]{
+            .nav li>a[href="?p=user_add"]{
                  background-image: url("../images/header/UserAdd.png");
                  background-size: 6vh;
              }
@@ -109,7 +109,7 @@ a{
     padding: 0;
     position: absolute;
     top: 22.5vh;
-    left: 25vw;
+    left: 19vw;
     height: 70vh;
     width: 65vw;
 }
@@ -132,7 +132,7 @@ a{
 .flashBag{
     top: 10vh;
     clear: both;
-    left: 30vw;
+    left: 21.5vw;
     position: absolute;
     border-width: 1vh 1vw ;
     border-style: solid;

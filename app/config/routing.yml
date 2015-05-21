@@ -1,16 +1,17 @@
 show_home:
   controller: Website\Controller\HomeController:showHomeAction
   secure: false
-show_addUser:
-  controller: Website\Controller\HomeController:ShowAddUserAction
-  secure: false
 show_contact:
   controller: Website\Controller\HomeController:ShowContactAction
   secure: false
-show_profilUser:
-  controller: Website\Controller\HomeController:ShowProfilAction
-  secure: true
 
+
+show_user:
+  controller: Website\Controller\UserController:listUsersAction
+  secure: false
+show_users:
+  controller: Website\Controller\UserController:showUserAction
+  secure: false
 user_login:
   controller: Website\Controller\UserController:logUserAction
   secure: false
@@ -23,3 +24,26 @@ user_logout:
 user_enable:
   controller: Website\Controller\UserController:enableUserAction
   secure: false
+show_profilUser:
+  controller: Website\Controller\UserController:ShowProfilAction
+  secure: true
+user_logout:
+  controller: Website\Controller\UserController:logOutAction
+  secure: false
+user_enable:
+  controller: Website\Controller\UserController:enableUserAction
+  secure: false
+
+
+product_list:
+  controller: WebSite\Controller\ProductController:listProductsAction
+
+product_show:
+  controller: WebSite\Controller\ProductController:showProductAction
+
+product_add:
+  controller: WebSite\Controller\ProductController:addProductAction
+
+product_delete:
+  controller: WebSite\Controller\ProductController:deleteProductAction
+

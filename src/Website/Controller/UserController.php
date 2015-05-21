@@ -15,7 +15,41 @@ class UserController extends HomeController
     {
         $this->bdd = $this->getConnection();
     }
+    public function addMessageFlash($type, $message)
+    {
+        $types = ['success','error','alert','info'];
+        if (!isset($types[$type])){
+            return false;
+        }
 
+        if (!isset($_SESSION['flashBag'][$type])) {
+            $_SESSION['flashBag'][$type] = [];
+        }
+
+        // on ajoute le message
+        $_SESSION['flashBag'][$type][] = $message;
+    }
+    public function listUsersAction()
+    {
+
+        $userManager = new UserManager($this->getConnection());
+        $users = $userManager->getUsers();
+
+        return [
+            'view' => '../src/WebSite/View/user/listUser.html.php',
+            'users' => $users
+        ];
+    }
+    public function showUserAction($request)
+    {
+        $userManager = new UserManager($this->getConnection());
+        $users = $userManager->getUser($request['session']['id']);
+
+        return [
+            'view' => '../src/WebSite/View/user/showUser.html.php',
+            'users' => $users
+        ];
+    }
 
     public function addUserAction($request)
     {
@@ -39,12 +73,21 @@ class UserController extends HomeController
                 ];
             }else{
                 return [
-                    'redirect_to' => 'index.php?p=show_addUser'
+                    'redirect_to' => 'index.php?p=user_add'
                 ];
             }
         }
         return [
-            'redirect_to' => 'index.php?p=show_addUser',
+            'view' => 'src/Website/View/adduser.html.php'
+        ];
+    }
+
+    public function deleteUserAction($request)
+    {
+        $userManager = new UserManager($this->getConnection());
+        $userManager->deleteUser($request['request']['email']);
+        return [
+            'redirect_to' => 'index.php',
         ];
     }
 
@@ -107,12 +150,13 @@ class UserController extends HomeController
                 ];
             }
             else{
-
+                $this->addMessageFlash(1, 'Erreur Serveur veuillez contacter notre service client');
                 return [
                     'redirect_to' => 'index.php?p=show_addUser',
                 ];
             }
         }
+        $this->addMessageFlash(1, 'Votre lien n\'est pas valide');
         return [
             'redirect_to' => 'index.php?p=show_home'
         ];

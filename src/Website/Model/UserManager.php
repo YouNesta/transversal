@@ -7,12 +7,34 @@
  */
 namespace Website\Model;
 
-use Website\Controller\HomeController;
 
-class UserManager extends HomeController{
+use Website\Controller\UserController;
+
+class UserManager extends UserController{
     function __construct($param){
 
         $this->bdd = $this->getConnection();
+    }
+    function getUsers(){
+
+        $sql = 'SELECT *
+                FROM Users';
+
+        $statement = $this->bdd->prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+    function getUser($id){
+
+        $sql = 'SELECT *
+                FROM Users
+                WHERE id = :id';
+
+        $statement = $this->bdd->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
+        return $statement->fetch();
     }
     function addUser($lastname, $firstname, $birth, $email, $pass, $passCheck,$adress,$ville, $postalCode,$subscription){
         $verifForm = 'ok';
@@ -109,7 +131,7 @@ class UserManager extends HomeController{
 
 
     function logUser($email, $pass){
-        $sql = 'SELECT email ,firstname,email,password,birthday,adress,city,postalCode,subscription,password, stateAccount
+        $sql = 'SELECT id, email ,firstname,email,birthday,adress,city,postalCode,subscription,password, stateAccount
                 FROM Users
                 WHERE email = :email AND password = :password';
         $request = $this->bdd->prepare($sql);
@@ -150,6 +172,8 @@ class UserManager extends HomeController{
 
 
     }
-
+    function deleteUser($email){
+        $this->bdd->delete('user', array('name' => $email));
+    }
 
 }

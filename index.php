@@ -1,39 +1,22 @@
 <?php
 session_start();
 
-
 require_once __DIR__.'/vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
 $routes = Yaml::parse(file_get_contents(__DIR__.'/app/config/routing.yml'));
 
-
-
-
-
-
-
 if(!empty($_GET['p'])){
     $page = $_GET['p'];
 } else {
-    $page = 'show_home'; //put your default route name here, can be user_list
+    $page = 'show_home';
 }
 
-
-
-
-
-
-//check if controller config exits in routing.yml
 if (!empty($routes[$page]['controller'])) {
     list($controller_class,$action_name) = explode(':', $routes[$page]['controller']);
 } else {
     throw new Exception('add routing config for '.$page.' in routing.yml');
 }
-
-
-
-
 
 $controller = new $controller_class();
 if (
@@ -50,7 +33,6 @@ $request['session'] = &$_SESSION;
 
 $response = $controller->$action_name($request);
 
-
 if(isset($response['redirect_to'])){  /** Test Redirection */
     header('Location: '.$response['redirect_to']);
     exit;
@@ -61,4 +43,4 @@ if(isset($response['redirect_to'])){  /** Test Redirection */
 }else {
     throw new Exception('your action "'.$page.'" do not return a correct response array, should have "view" or "redirect_to"');
 }
-?>
+
