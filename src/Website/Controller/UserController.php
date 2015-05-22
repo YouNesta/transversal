@@ -15,20 +15,6 @@ class UserController extends HomeController
     {
         $this->bdd = $this->getConnection();
     }
-    public function addMessageFlash($type, $message)
-    {
-        $types = ['success','error','alert','info'];
-        if (!isset($types[$type])){
-            return false;
-        }
-
-        if (!isset($_SESSION['flashBag'][$type])) {
-            $_SESSION['flashBag'][$type] = [];
-        }
-
-        // on ajoute le message
-        $_SESSION['flashBag'][$type][] = $message;
-    }
     public function listUsersAction()
     {
 
@@ -175,18 +161,46 @@ class UserController extends HomeController
     }
 
     public function ShowProfilAction($request){
+
         if($request['request']){
             $userManager = new UserManager($this->getConnection());
-            $users = $userManager->updateAdress($request['request']['adress'],$request['request']['postalCode'],$request['request']['city'], $request['session']['user']['id']);
+            if(isset($request['request']['lastname'])){
+                $users = $userManager->updateAccount($request['request']['lastname'],$request['request']['firstname'],$request['request']['birthday'],$request['session']['user']['id']);
+                if($users['verif'] == 'ok'){
+                    $request['session']['user']['lastname'] = $request['request']['lastname'];
+                    $request['session']['user']['firstname'] = $request['request']['firstname'];
+                    $request['session']['user']['birthday'] = $request['request']['birthday'];
+                    $this->addMessageFlash(0,'Vos Infos personnelles ont été changé avec succés');
+                }else{
+                    $this->addMessageFlash(1,'Vos Infos personnelles n\'ont pu etre modifié');
+                }
+            }elseif(isset($request['request']['email'])){
+                $users = $userManager->updateAdress($request['request']['email'],$request['request']['adress'],$request['request']['postalCode'],$request['request']['city'],$request['session']['user']['id']);
+                if($users['verif'] == 'ok'){
+                    $request['session']['user']['email'] = $request['request']['email'];
+                    $request['session']['user']['adress'] = $request['request']['adress'];
+                    $request['session']['user']['postalCode'] = $request['request']['postalCode'];
+                    $request['session']['user']['city'] = $request['request']['city'];
+                    $this->addMessageFlash(0,'Vos coordonnées a été changé avec succés');
+                }else{
+                    $this->addMessageFlash(1,'Vos coordonnées n\'ont pu etre modifié');
+                }
+            }elseif(isset($request['session']['user']['email'])){
+                $users = $userManager->updateSubscription($request['request']['subscription'],$request['request']['on'],$request['session']['user']['id']);
 
-            if($users['verif'] == 'ok'){
-                $request['session']['user']['adress'] = $request['request']['adress'];
-                $request['session']['user']['postalCode'] = $request['request']['postalCode'];
-                $request['session']['user']['city'] = $request['request']['city'];
-                $this->addMessageFlash(0, 'Adresse changé avec succée');
-            }else{
-                $this->addMessageFlash(1, 'Veuillez entrez une nouvelle adresse');
+                if($users['verif'] == 'ok'){
+                    $request['session']['user']['email'] = $request['request']['email'];
+                    $request['session']['user']['adress'] = $request['request']['adress'];
+                    $request['session']['user']['postalCode'] = $request['request']['postalCode'];
+                    $request['session']['user']['city'] = $request['request']['city'];
+
+                    $this->addMessageFlash(1,'Votre abonnement a été changé avec succés');
+                }else{
+                    $this->addMessageFlash(0,'Votre abonnement n\'a pas pu etre changé');
+                }
             }
+
+
         }
         return [
             $request,

@@ -18,7 +18,7 @@ class UserManager extends UserController{
     function getUsers(){
 
         $sql = 'SELECT *
-                FROM Users';
+                FROM users';
 
         $statement = $this->bdd->prepare($sql);
         $statement->execute();
@@ -27,7 +27,7 @@ class UserManager extends UserController{
     function getUser($id){
 
         $sql = 'SELECT *
-                FROM Users
+                FROM users
                 WHERE id = :id';
 
         $statement = $this->bdd->prepare($sql);
@@ -96,7 +96,7 @@ class UserManager extends UserController{
             ];
         }else{
 
-            $sql = 'INSERT INTO Users (lastname, firstname,birthday, email, password,  adress, city, postalCode, subscription)
+            $sql = 'INSERT INTO users (lastname, firstname,birthday, email, password,  adress, city, postalCode, subscription)
                 VALUES (:lastname, :firstname,:birthday, :email, :password,  :adress, :city, :postalCode, :subscription)';
             $statement = $this->bdd->prepare($sql);
             $statement->execute([
@@ -137,8 +137,8 @@ class UserManager extends UserController{
 
 
     function logUser($email, $pass){
-        $sql = 'SELECT id, email,lastname ,firstname,email,birthday,adress,city,postalCode,subscription,stateAccount
-                FROM Users
+        $sql = 'SELECT id, email,lastname ,firstname,email,birthday,adress,city,postalCode,subscription,stateAccount, stateSubscription
+                FROM users
                 WHERE email = :email AND password = :password';
         $request = $this->bdd->prepare($sql);
         $request->execute([
@@ -149,7 +149,7 @@ class UserManager extends UserController{
         $result = $request->fetch();
         if( $result){
             $sql = 'SELECT *
-                FROM Subscription
+                FROM subscription
                 WHERE id = :id';
             $request = $this->bdd->prepare($sql);
             $request->execute([
@@ -162,7 +162,7 @@ class UserManager extends UserController{
     function enableUser($hashMail){
 
         $sql = 'SELECT email, stateAccount,firstname,email,password,birthday,adress,city,postalCode,subscription
-                FROM Users';
+                FROM users';
         $request = $this->bdd->prepare($sql);
         $request->execute();
        $result = $request->fetchAll();
@@ -175,7 +175,7 @@ class UserManager extends UserController{
                     return [
                         'verif' => 'no'];
                 }
-                $this->bdd->update('Users', array('stateAccount' => '12'), array('email' => $value['email']));
+                $this->bdd->update('users', array('stateAccount' => '12'), array('email' => $value['email']));
                 return [
                     'verif' => 'yes',
                     'users' => $value];
@@ -192,8 +192,9 @@ class UserManager extends UserController{
     function deleteUser($email){
         $this->bdd->delete('user', array('name' => $email));
     }
-    function updateAdress($adress, $postalCode, $city, $id){
-        $update = $this->bdd->update('users', array('adress' => $adress,'postalCode' => $postalCode,'city' => $city), array('id' => $id));
+
+    function updateAccount($lastname,$firstname, $birthday, $id){
+        $update = $this->bdd->update('users', array('lastname'=>$lastname,'firstname'=>$firstname,'birthday'=> $birthday), array('id' => $id));
         if($update){
             return [
                 'verif' => 'ok'];
@@ -203,4 +204,24 @@ class UserManager extends UserController{
         }
 
         }
+    function updateAdress($email, $adress, $postalCode, $city, $id){
+        $update = $this->bdd->update('users', array('email'=>$email,'adress' => $adress,'postalCode' => $postalCode,'city' => $city), array('id' => $id));
+        if($update){
+            return [
+                'verif' => 'ok'];
+        }else{
+            return [
+                'verif' => 'no'];
+        }
+    }
+    function updateSubscription($subscription, $subscriptionState, $id){
+        $update = $this->bdd->update('users', array('subscription'=>$subscription,'stateSubscription'=>$subscriptionState), array('id' => $id));
+        if($update){
+            return [
+                'verif' => 'ok'];
+        }else{
+            return [
+                'verif' => 'no'];
+        }
+    }
 }

@@ -30,7 +30,6 @@ if (
 $request['request'] = &$_POST;
 $request['query'] = &$_GET;
 $request['session'] = &$_SESSION;
-
 $response = $controller->$action_name($request);
 if(isset($response['redirect_to'])){  /** Test Redirection */
     header('Location: '.$response['redirect_to']);
