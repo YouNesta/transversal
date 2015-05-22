@@ -185,14 +185,10 @@ class UserController extends HomeController
                 }else{
                     $this->addMessageFlash(1,'Vos coordonnées n\'ont pu etre modifié');
                 }
-            }elseif(isset($request['session']['user']['email'])){
+            }elseif(isset($request['request']['subscription'])){
                 $users = $userManager->updateSubscription($request['request']['subscription'],$request['request']['on'],$request['session']['user']['id']);
 
                 if($users['verif'] == 'ok'){
-                    $request['session']['user']['email'] = $request['request']['email'];
-                    $request['session']['user']['adress'] = $request['request']['adress'];
-                    $request['session']['user']['postalCode'] = $request['request']['postalCode'];
-                    $request['session']['user']['city'] = $request['request']['city'];
 
                     $this->addMessageFlash(1,'Votre abonnement a été changé avec succés');
                 }else{
