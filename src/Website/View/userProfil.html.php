@@ -13,8 +13,12 @@ echo '
     </div>
     <div>
         <h1>'.$request['session']['user']['email'].'</h1>
-        <h1>'.$request['session']['user']['adress'].'</h1>
-        <h1>'.$request['session']['user']['city'].'</h1>
+<form action="?p=show_profilUser" method="post">
+        <input type="text" name="adress" value="'.$request['session']['user']['adress'].'">
+        <input type="text" name="postalCode" value="'.$request['session']['user']['postalCode'].'">
+        <input type="text" name="city" value="'.$request['session']['user']['city'].'">
+        <input type="submit">
+</form>
     </div>
      <div>
         <h1>'.$request['session']['user']['subscription']['name'].'</h1>

@@ -192,5 +192,15 @@ class UserManager extends UserController{
     function deleteUser($email){
         $this->bdd->delete('user', array('name' => $email));
     }
+    function updateAdress($adress, $postalCode, $city, $id){
+        $update = $this->bdd->update('users', array('adress' => $adress,'postalCode' => $postalCode,'city' => $city), array('id' => $id));
+        if($update){
+            return [
+                'verif' => 'ok'];
+        }else{
+            return [
+                'verif' => 'no'];
+        }
 
+        }
 }

@@ -175,8 +175,21 @@ class UserController extends HomeController
     }
 
     public function ShowProfilAction($request){
+        if($request['request']){
+            $userManager = new UserManager($this->getConnection());
+            $users = $userManager->updateAdress($request['request']['adress'],$request['request']['postalCode'],$request['request']['city'], $request['session']['user']['id']);
 
+            if($users['verif'] == 'ok'){
+                $request['session']['user']['adress'] = $request['request']['adress'];
+                $request['session']['user']['postalCode'] = $request['request']['postalCode'];
+                $request['session']['user']['city'] = $request['request']['city'];
+                $this->addMessageFlash(0, 'Adresse changé avec succée');
+            }else{
+                $this->addMessageFlash(1, 'Veuillez entrez une nouvelle adresse');
+            }
+        }
         return [
+            $request,
             'view' => 'src/Website/View/userProfil.html.php'
         ];
     }

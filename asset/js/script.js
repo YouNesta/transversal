@@ -55,6 +55,18 @@ function changebackgroundOff(object){
         $(object).fadeIn('slow');
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
 $(function() {
     if(sessionStorage.getItem('currentPage') != null){
         var id = sessionStorage.getItem('currentPage');
