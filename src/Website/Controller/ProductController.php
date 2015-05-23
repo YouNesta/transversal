@@ -16,12 +16,18 @@ class ProductController extends AbstractBaseController
     if(isset($request['query']['category'])){
         $productManager = new ProductManager($this->getConnection());
         $Idproducts = $productManager->ListIdProductsByCategory($request['query']['category']);
+        if($Idproducts){
+            foreach($Idproducts as $array){
 
-        foreach($Idproducts as $array){
-
-           foreach($array as $value){
-               $products[] = $productManager->showProduct($value);
-           }
+                foreach($array as $value){
+                    $products[] = $productManager->showProduct($value);
+                }
+            }
+        }else{
+            $this->addMessageFlash(2, 'Aucun produit dans cette section<br>Retour à "Toute les catégories"');
+            return[
+                'redirect_to' => 'index.php?p=product_list'
+            ];
         }
 
     }else{
