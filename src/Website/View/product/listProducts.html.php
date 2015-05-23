@@ -7,7 +7,6 @@
  */
 
 
-var_dump($response['products'][0]['category']);
 echo '<table>';
 foreach ($response['products'] as $content) {
     echo '<td>';
