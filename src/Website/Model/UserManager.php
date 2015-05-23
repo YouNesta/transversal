@@ -67,6 +67,7 @@ class UserManager extends UserController{
         if(!empty($pass)){
             if($pass != $passCheck){
                 $errorLog[]="Votre mot de passe est incorrect";
+                $verifForm = 'no';
             }
         }else{
             $errorLog[]="Vous devez renseigner votre un mots de passe";
@@ -112,7 +113,7 @@ class UserManager extends UserController{
             ]);
 
 
-            $destinataire ='boulkaddid.younes@gmail.com';
+            $destinataire = $email;
             $sujet = "Lien d'activation";
             $message = "Nom : Transversal \r\n";
             $message = $message."Adresse email : boulkaddid.younes@gmail.com\r\n";

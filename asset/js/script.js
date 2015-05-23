@@ -57,16 +57,6 @@ function changebackgroundOff(object){
 }
 
 
-
-
-
-
-
-
-
-
-
-
 $(function() {
     if(sessionStorage.getItem('currentPage') != null){
         var id = sessionStorage.getItem('currentPage');
