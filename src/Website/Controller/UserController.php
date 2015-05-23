@@ -68,13 +68,13 @@ class UserController extends HomeController
 
             }else{
                 return [
-                    'view' => 'src/Website/View/adduser.html.php',
+                    'view' => 'src/Website/View/userAdd.html.php',
                     'errorLog' => $response['errorLog']
                 ];
             }
         }
         return [
-            'view' => 'src/Website/View/adduser.html.php'
+            'view' => 'src/Website/View/user/userAdd.html.php'
         ];
     }
 
@@ -114,7 +114,7 @@ class UserController extends HomeController
             }
         }
         return [
-            'view' => 'src/Website/View/login.html.php'
+            'view' => 'src/Website/View/user/userlogin.html.php'
         ];
 
     }
@@ -200,7 +200,7 @@ class UserController extends HomeController
         }
         return [
             $request,
-            'view' => 'src/Website/View/userProfil.html.php'
+            'view' => 'src/Website/View/user/userProfil.html.php'
         ];
     }
 }

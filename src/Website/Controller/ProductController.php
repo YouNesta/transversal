@@ -11,15 +11,26 @@ class ProductController extends AbstractBaseController
         $this->bdd = $this->getConnection();
     }
 
-    public function listProductsAction()
+    public function listProductsAction($request)
     {
-
+    if(isset($request['query']['category'])){
         $productManager = new ProductManager($this->getConnection());
-        $product = $productManager->ListProducts();
+        $Idproducts = $productManager->ListIdProductsByCategory($request['query']['category']);
 
+        foreach($Idproducts as $array){
+
+           foreach($array as $value){
+               $products[] = $productManager->showProduct($value);
+           }
+        }
+
+    }else{
+        $productManager = new ProductManager($this->getConnection());
+        $products = $productManager->ListProducts();
+    }
         return [
-            'view' => '../src/WebSite/View/product/listProducts.html.php',
-            'product' => $product
+            'view' => 'src/WebSite/View/product/listProducts.html.php',
+            'products' => $products
         ];
     }
 
@@ -29,7 +40,7 @@ class ProductController extends AbstractBaseController
         $product = $productManager->showProduct($request['request']['id']);
 
         return [
-            'view' => '../src/WebSite/View/product/showProduct.html.php',
+            'view' => 'src/WebSite/View/product/showProduct.html.php',
             'product' => $product
         ];
     }
@@ -45,7 +56,7 @@ class ProductController extends AbstractBaseController
         }
 
         return [
-            'view' => '../src/WebSite/View/Product/addProduct.html.php',
+            'view' => 'src/WebSite/View/Product/addProduct.html.php',
         ];
     }
 

@@ -37,13 +37,13 @@ user_enable:
 
 product_list:
   controller: WebSite\Controller\ProductController:listProductsAction
-
+  secure: false
 product_show:
   controller: WebSite\Controller\ProductController:showProductAction
-
+  secure: false
 product_add:
   controller: WebSite\Controller\ProductController:addProductAction
-
+  secure: true
 product_delete:
   controller: WebSite\Controller\ProductController:deleteProductAction
-
+  secure: true

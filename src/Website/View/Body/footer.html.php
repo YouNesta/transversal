@@ -8,8 +8,8 @@
 ?>
 </div>
 <div id="footer"> <ul>
-        <li><a href="http://facebook.fr"><img src="asset/images/footer/facebook.png" alt=""/></a></li>
-        <li><a href="twitter.fr"><img src="asset/images/footer/twitter.png" alt=""/></a></li>
+        <li><a href="http://facebook.fr" target="_blank"><img src="asset/images/footer/facebook.png" alt=""/></a></li>
+        <li><a href="http://twitter.fr" target="_blank"><img src="asset/images/footer/twitter.png" alt=""/></a></li>
     </ul>
 </div>
 </div>
