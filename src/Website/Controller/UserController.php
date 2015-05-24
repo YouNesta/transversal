@@ -68,7 +68,7 @@ class UserController extends HomeController
 
             }else{
                 return [
-                    'view' => 'src/Website/View/userAdd.html.php',
+                    'view' => 'src/Website/View/user/userAdd.html.php',
                     'errorLog' => $response['errorLog']
                 ];
             }
