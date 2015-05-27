@@ -14,8 +14,15 @@ class HomeController extends AbstractBaseController{
    public function __construct(){
         $this->getConnection();
     }
-   public function showHomeAction(){
+   public function showHomeAction($request){
+        if($request['query']){
+            switch ($request['query']['action'] ){
+                case 'paymentSuccess' :
+                    $this->addMessageFlash(1, 'Votre paiment as bien abouti, vous allez bientot recevoir un mail de confirmation' );
+                    break;
+            }
 
+        }
         return [
             'view' => 'src/Website/View/home.html.php'
         ];

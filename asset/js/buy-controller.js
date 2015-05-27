@@ -18,6 +18,12 @@ function stripeResponseHandler(status, response)
         var firstName = $("#first-name").val();
         var lastName = $("#last-name").val();
         var email = $("#email").val();
+        var password = $('#password').val();
+        var adress = $('#adress').val();
+        var city = $('#city').val();
+        var postalCode = $('#postalCode').val();
+        var birth = $('#year').val()+'-'+$('#day').val()+'-'+$('#month').val();
+
 
         // We need to know what amount to charge. Assume $20.00 for the tutorial.
         // You would obviously calculate this on your own:
@@ -27,7 +33,7 @@ function stripeResponseHandler(status, response)
         // Pass the token and non-sensitive form information.
         var request = $.ajax ({
             type: "POST",
-            url: "src/Website/Controller/PaymentController.php",
+            url: "?p=payment",
             dataType: "json",
             data: {
                 "stripeToken" : token,
@@ -37,7 +43,7 @@ function stripeResponseHandler(status, response)
                 "price" : price
             }
         });
-        alert(request.done)
+
 
         request.done(function(msg)
         {
@@ -46,9 +52,11 @@ function stripeResponseHandler(status, response)
                 // Customize this section to present a success message and display whatever
                 // should be displayed to the user.
                 alert("The credit card was charged successfully!");
+                window.location.replace("?p=show_home&action=paymentSuccess");
             }
             else
             {
+                alert(msg.result)
                 // The card was NOT charged successfully, but we interfaced with Stripe
                 // just fine. There's likely an issue with the user's credit card.
                 // Customize this section to present an error explanation
@@ -75,55 +83,35 @@ $(document).ready(function()
         var fName = $('#first-name').val();
         var lName = $('#last-name').val();
         var email = $('#email').val();
-        var password = $('#password').val();
-        var passwordCheck = $('#passwordCheck').val();
-        var adress = $('#adress').val();
-        var city = $('#city').val();
-        var postalCode = $('#postalCode').val();
         var cardNumber = $('#card-number').val();
         var cardCVC = $('#card-security-code').val();
         var errorLog = [];
 
 
         // First and last name fields: make sure they're not blank
-
-        if (lName === "") {
-            $('#last-name').css({backgroundColor: "red"});
-            errorLog.push("Vous n'avez pas entrer de Nom de Famille");
-        }
-        if (fName === "") {
+        if ( fName === "") {
+            errorLog.push("Vous n'avez pas de numéro de carte");
             $('#first-name').css({backgroundColor: "red"});
-            errorLog.push("Vous n'avez pas entrer de Prénom");
-        }
 
-        // Validate the email address:
-        var emailFilter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        }
+        if (lName === "") {
+            errorLog.push("Vous n'avez pas de numéro de carte");
+            $('last-name').css({backgroundColor: "red"});
+
+        }
         if (email === "") {
+            errorLog.push("Vous n'avez pas de numéro de carte");
             $('#email').css({backgroundColor: "red"});
-            errorLog.push("Vous n'avez pas entrer d'email");
-        } else if (!emailFilter.test(email)) {
-            errorLog.push("Votre email n'est pas valide");
-            $('#email').css({backgroundColor: "red"});
-        }
-        if (password === "") {
-            $('#password').css({backgroundColor: "red"});
 
         }
-        if (passwordCheck === "") {
-            $('#password').css({backgroundColor: "red"});
-
-        }else if (password != passwordCheck ) {
-            showErrorDialogWithMessage("Vos Password sons differents");
-            $('#password').css({backgroundColor: "red"});
-            $('#passwordCheck').css({backgroundColor: "red"});
-        }
-
         // Stripe will validate the card number and CVC for us, so just make sure they're not blank
         if (cardNumber === "") {
+            errorLog.push("Vous n'avez pas de numéro de carte");
             $('#card-number').css({backgroundColor: "red"});
 
         }
         if (cardCVC === "") {
+            errorLog.push("Vous n'avez pas entrer de Cryptogramme");
             $('#card-security-code').css({backgroundColor: "red"});
 
         }
@@ -139,8 +127,12 @@ $(document).ready(function()
             exp_month: $('#expiration-month').val(),
             exp_year: $('#expiration-year').val()
         }, stripeResponseHandler);
-
+        if(errorLog.length === 0){
+            return true;
+        }else{
+            return false;
+        }
 // Prevent the default submit action on the form
-        return false;
+
     });
 })

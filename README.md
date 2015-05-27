@@ -4,6 +4,12 @@ Connection to bdd
 
     -> app/config/config_prod.yml
 
+
+Export bdd
+
+    -> db/transversal.sql
+
+
 Routing
 
     -> app/config/routing.yml

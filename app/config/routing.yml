@@ -33,6 +33,9 @@ user_logout:
 user_enable:
   controller: Website\Controller\UserController:enableUserAction
   secure: false
+payment:
+    controller: Website\Controller\PaymentController:paymentAction
+    secure: false
 
 
 product_list:

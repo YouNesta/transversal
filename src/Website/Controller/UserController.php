@@ -8,7 +8,7 @@
 namespace Website\Controller;
 use Website\Model\UserManager;
 
-class UserController extends HomeController
+class UserController extends AbstractBaseController
 {
 
     public function __construct()
@@ -55,9 +55,10 @@ class UserController extends HomeController
             );
             if($response['verifForm'] == 'ok'){
                 if($response['mailCheck'] == 'yes'){
-                    $this->addMessageFlash(0, "un mail vient d'etre envoyé, pour confirmer votre inscription");
+                    $this->addMessageFlash(0, "un mail vient d'etre envoyé, pour confirmer votre adresse mail");
                     return [
-                        'redirect_to' => 'index.php?p=show_home'
+                        'redirect_to' => 'index.php?p=payment',
+                        'user' => $request['request']
                     ];
                 }else{
                     $this->addMessageFlash(1, "Un probleme est survenur lors de l'inscription, veuillez reessayer ultérieurement");
@@ -201,6 +202,14 @@ class UserController extends HomeController
         return [
             $request,
             'view' => 'src/Website/View/user/userProfil.html.php'
+        ];
+    }
+    public function paymentUserAction($request)
+    {
+
+        return [
+            'view' => 'src/Website/View/user/userPayment.html.php',
+
         ];
     }
 }

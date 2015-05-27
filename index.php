@@ -39,6 +39,8 @@ if(isset($response['redirect_to'])){  /** Test Redirection */
     require_once 'src/Website/View/Body/header.html.php';
     require_once $response['view'];
     require_once 'src/Website/View/Body/footer.html.php';
+} elseif (!empty($response['ajax']) ){
+    require_once $response['ajax'];
 }else {
     throw new Exception('your action "'.$page.'" do not return a correct response array, should have "view" or "redirect_to"');
 }
