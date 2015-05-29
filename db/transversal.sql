@@ -2,10 +2,10 @@
 -- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: May 27, 2015 at 03:04 PM
--- Server version: 5.5.38
--- PHP Version: 5.6.2
+-- Client :  localhost:8889
+-- Généré le :  Ven 29 Mai 2015 à 06:08
+-- Version du serveur :  5.5.38
+-- Version de PHP :  5.6.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `transversal`
+-- Base de données :  `transversal`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Structure de la table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -32,7 +32,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categories`
+-- Contenu de la table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
@@ -46,16 +46,16 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoriesProducts`
+-- Structure de la table `categoriesProducts`
 --
 
 CREATE TABLE `categoriesProducts` (
   `idCategory` int(11) NOT NULL,
-  `idProduct` int(11) NOT NULL
+  `idProduct` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `categoriesProducts`
+-- Contenu de la table `categoriesProducts`
 --
 
 INSERT INTO `categoriesProducts` (`idCategory`, `idProduct`) VALUES
@@ -67,7 +67,7 @@ INSERT INTO `categoriesProducts` (`idCategory`, `idProduct`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class`
+-- Structure de la table `class`
 --
 
 CREATE TABLE `class` (
@@ -76,63 +76,76 @@ CREATE TABLE `class` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `class`
+-- Contenu de la table `class`
 --
 
 INSERT INTO `class` (`id`, `name`) VALUES
 (1, 'Mobilier'),
-(4, 'Décoration');
+(2, 'Accessoires'),
+(3, 'Luminaire'),
+(4, 'Decoration');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Structure de la table `products`
 --
 
 CREATE TABLE `products` (
 `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `class` int(11) NOT NULL,
   `subclass` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `products`
+-- Contenu de la table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `class`, `subclass`) VALUES
-(1, 'Table Salon', 1, 1),
-(2, 'Table Salle de bain', 1, 1);
+(1, 'tapisCuisine', 4, 10),
+(2, 'mirroirChambre', 4, 9),
+(3, 'tapisSalon', 4, 10),
+(4, 'tapisChambre', 4, 10),
+(5, 'mirroirCuisine', 4, 9),
+(6, 'mirroirSalon', 4, 9),
+(7, 'rideauChambre', 4, 7),
+(8, 'RideauCuisine', 4, 7),
+(9, 'rideauSalon', 4, 7),
+(10, 'vaseCuisine', 4, 6),
+(11, 'vaseSalon', 4, 6);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subclass`
+-- Structure de la table `subclass`
 --
 
 CREATE TABLE `subclass` (
 `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `subclass`
+-- Contenu de la table `subclass`
 --
 
 INSERT INTO `subclass` (`id`, `name`) VALUES
-(1, 'Table'),
-(2, 'Chaise'),
-(3, 'Tableau'),
-(4, 'Vase'),
-(5, 'Tableau'),
+(1, 'Coussin'),
+(2, 'Jeux'),
+(3, 'Autres'),
+(4, 'Poubelle'),
+(5, 'Pouf'),
 (6, 'Vase'),
 (7, 'Rideau'),
-(8, ' Verre');
+(8, 'Meuble'),
+(9, 'Miroirs '),
+(10, 'Tapis');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subscription`
+-- Structure de la table `subscription`
 --
 
 CREATE TABLE `subscription` (
@@ -143,7 +156,7 @@ CREATE TABLE `subscription` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `subscription`
+-- Contenu de la table `subscription`
 --
 
 INSERT INTO `subscription` (`id`, `name`, `monthlyPayment`, `price`) VALUES
@@ -152,7 +165,7 @@ INSERT INTO `subscription` (`id`, `name`, `monthlyPayment`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
@@ -169,115 +182,118 @@ CREATE TABLE `users` (
   `stateAccount` tinyint(1) NOT NULL,
   `stateSubscription` tinyint(1) NOT NULL,
   `statePayment` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Contenu de la table `users`
 --
 
 INSERT INTO `users` (`id`, `lastname`, `firstname`, `email`, `password`, `birthday`, `adress`, `city`, `postalCode`, `subscription`, `stateAccount`, `stateSubscription`, `statePayment`) VALUES
-(44, 'Boulkaddid', 'Younes', 'younes@younes.fr', '9cf95dacd226dcf43da376cdb6cbba7035218921', '1995-02-14', 'Younes', 'Evry', 91000, 1, 0, 0, 1);
+(44, 'Boulkaddid', 'Younes', 'younes@younes.fr', '9cf95dacd226dcf43da376cdb6cbba7035218921', '1995-02-14', 'Younes', 'Evry', 91000, 1, 0, 0, 1),
+(46, 'younes', 'younes', 'boulkaddid@gmail.com', 'c7329b36a0495cf910391ad2e5f975504b63b59e', '1997-01-14', '60 boulevard Marechal', 'Evry', 91000, 1, 1, 1, 0),
+(47, 'Boulkaddid', 'Younes', 'boulkaddid.younes@gmail.com', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '1995-02-14', '1 AllÃ©e des Galants Courts', 'Evry', 91000, 1, 0, 0, 1),
+(48, 'Boulkaddid', 'Younes', 'boulkaddid.yoeeeunes@gmail.com', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', '1995-02-14', '1 AllÃ©e des Galants Courts', 'Evry', 91000, 1, 0, 0, 0);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables exportées
 --
 
 --
--- Indexes for table `categories`
+-- Index pour la table `categories`
 --
 ALTER TABLE `categories`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `categoriesProducts`
+-- Index pour la table `categoriesProducts`
 --
 ALTER TABLE `categoriesProducts`
  ADD KEY `idProduct` (`idProduct`), ADD KEY `idCategory` (`idCategory`);
 
 --
--- Indexes for table `class`
+-- Index pour la table `class`
 --
 ALTER TABLE `class`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Index pour la table `products`
 --
 ALTER TABLE `products`
  ADD PRIMARY KEY (`id`), ADD KEY `subclass` (`subclass`), ADD KEY `class` (`class`);
 
 --
--- Indexes for table `subclass`
+-- Index pour la table `subclass`
 --
 ALTER TABLE `subclass`
  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `subscription`
+-- Index pour la table `subscription`
 --
 ALTER TABLE `subscription`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`), ADD KEY `subscription` (`subscription`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `class`
+-- AUTO_INCREMENT pour la table `class`
 --
 ALTER TABLE `class`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT pour la table `products`
 --
 ALTER TABLE `products`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `subclass`
+-- AUTO_INCREMENT pour la table `subclass`
 --
 ALTER TABLE `subclass`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `subscription`
+-- AUTO_INCREMENT pour la table `subscription`
 --
 ALTER TABLE `subscription`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables exportées
 --
 
 --
--- Constraints for table `categoriesProducts`
+-- Contraintes pour la table `categoriesProducts`
 --
 ALTER TABLE `categoriesProducts`
 ADD CONSTRAINT `categoriesproducts_ibfk_1` FOREIGN KEY (`idCategory`) REFERENCES `categories` (`id`),
 ADD CONSTRAINT `categoriesproducts_ibfk_2` FOREIGN KEY (`idProduct`) REFERENCES `products` (`id`);
 
 --
--- Constraints for table `products`
+-- Contraintes pour la table `products`
 --
 ALTER TABLE `products`
-ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`class`) REFERENCES `class` (`id`),
-ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`subclass`) REFERENCES `subclass` (`id`);
+ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`subclass`) REFERENCES `subclass` (`id`),
+ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`class`) REFERENCES `class` (`id`);
 
 --
--- Constraints for table `users`
+-- Contraintes pour la table `users`
 --
 ALTER TABLE `users`
 ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`subscription`) REFERENCES `Subscription` (`id`);
