@@ -20,22 +20,22 @@
     <script src="asset/js/script.js"></script>
 </head>
 <body>
-<div class="nav">
-    <ul>
-
-        <li><a id="catalog" href="#"></a></li>
-        <li><a id="profil" href="#"></a></li> <!-- href="?p=show_profilUser" -->
-        <li><a id="logo" href="index.php#"></a></li>
-        <?php if(isset($_SESSION['user'])) {echo '<li><a id="userLogout" href="?p=user_logout"></a></li>';}else{echo '<li><a id="userLogin" href="?p=user_login"></a></li><li><a id="UserAdd" href="?p=user_add"></a></li>';}?>
-        <li><a id="contact" href="?p=show_contact"></a></li>
-    </ul>
-</div>
 <div class="wrapper">
-    <div class="wrapperLeft">
-        <div  id="contentWL" is-open='false'>
-            <img src="" alt="Logo"/>
-            <div id="navWL"></div>
-        </div>
+    <div class="nav">
+        <a id="logo" href="index.php#"><img src="asset/images/logoWhite.png" alt=""/></a>
+        <ul>
+            <li><a id="home" href="?p=show_home">Accueil</a></li>
+            <li><a id="catalog" href="?p=product_list">Gallerie</a></li>
+            <!-- href="?p=show_profilUser" -->
+            <?php if(isset($_SESSION['user'])) {echo '<li><a id="profil" href="?p=show_profilUser">Mon Compte</a></li> <li><a id="userLogout" href="?p=user_logout">Déconnexion</a></li>';}else{echo '<li><a id="userLogin" href="?p=user_login">Se connecter</a></li><li><a id="UserAdd" href="?p=user_add">Inscription</a></li>';}?>
+            <li><a id="contact" href="?p=show_contact">Contact</a></li>
+        </ul>
+        
+        <ul >
+            <li class="socialMedia"><a href="http://facebook.fr"><img src="asset/images/socialMedia/facebook.png" alt=""/></a></li>
+            <li class="socialMedia"><a href="http://twitter.fr"><img src="asset/images/socialMedia/twitter.png" alt=""/></a></li>
+            <li class="socialMedia"><a href="http://pinterest.fr"><img src="asset/images/socialMedia/pinterest.png" alt=""/></a></li>
+        </ul>
     </div>
         <div class="alert">
        <?php

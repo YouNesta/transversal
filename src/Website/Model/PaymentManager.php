@@ -7,14 +7,13 @@
  */
 namespace Website\Model;
 
-
 use Website\Controller\PaymentController;
 
 class PaymentManager extends PaymentController
 {
     function __construct($param)
     {
-        $this->bdd = $this->getConnection();
+        $this->bdd = $param;
     }
 
     function paymentSuccess($email){

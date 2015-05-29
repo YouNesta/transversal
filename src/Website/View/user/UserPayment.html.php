@@ -18,19 +18,19 @@
 
 <form  method="post" id="buy-form" action="javascript:" >
 
-    <label class="form-label">Last Name:</label>
-    <input class="text" id="last-name" spellcheck="false" name="lastname" value=""><br/>
+    <h2 class="form-label">Last Name:</h2>
+    <input class="text" id="last-name" spellcheck="false" name="lastname" placeholder="STERZATI"><br/>
 
-    <label class="form-label">First Name:</label>
-    <input class="text" id="first-name" spellcheck="false" name="firstname"><br/>
+    <h2 class="form-label">First Name:</h2>
+    <input class="text" id="first-name" spellcheck="false" name="firstname" placeholder="Paloma"><br/>
 
-    <label class="form-label">Email Address:</label>
-    <input class="text" id="email" name="email" spellcheck="false"><br/>
+    <h2 class="form-label">Email Address:</h2>
+    <input class="text" id="email" name="email" spellcheck="false" placeholder="paloma.sterzati@supinternet.fr" style="font-size: 2.5vh"><br/>
 
-    <label class="form-label">Credit Card Number:</label>
-    <input class="text" id="card-number" autocomplete="off"><br/>
+    <h2 class="form-label">Credit Card Number:</h2>
+    <input class="text" id="card-number" autocomplete="off" placeholder="4242424242424242"><br/>
 
-    <label class="form-label">Expiration Date:</label>
+    <h2 class="form-label">Expiration Date:</h2>
     <select id="expiration-month">
         <option value="1">January</option>
         <option value="2">February</option>
@@ -62,10 +62,10 @@
         ?>
     </select><br/>
 
-    <label class="form-label">CVC:</label>
-    <input class="text" id="card-security-code" autocomplete="off">
+    <h2 class="form-label">CVC:</h2>
+    <input class="text" id="card-security-code" autocomplete="off" placeholder="665"><br>
 
-    <input id="buy-submit-button" type="submit" value="Place This Order »">
+    <button id="buy-submit-button" type="submit" >√</button>
 </form>
 
 <div id="errorLog">

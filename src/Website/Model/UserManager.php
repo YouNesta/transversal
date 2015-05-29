@@ -11,10 +11,11 @@ namespace Website\Model;
 use Website\Controller\UserController;
 
 class UserManager extends UserController{
-    function __construct($param){
-
-        $this->bdd = $this->getConnection();
+    function __construct($param)
+    {
+        $this->bdd = $param;
     }
+
     function getUsers(){
 
         $sql = 'SELECT *
@@ -117,7 +118,7 @@ class UserManager extends UserController{
             $sujet = "Lien d'activation";
             $message = "Nom : Transversal \r\n";
             $message = $message."Adresse email : boulkaddid.younes@gmail.com\r\n";
-            $message = $message."Message : "."Veuillez cliquez sur ce <a href=\"index.php?p=user_enable&enableUser=".sha1($email)."\">lien d'activation</a> pour verifiez votre adresse email\r\n";
+            $message = $message."Message : "."Veuillez cliquez sur ce <a href=\"http://transversal.newcrown.fr?p=user_enable&enableUser=".sha1($email)."\">lien d'activation</a> pour verifiez votre adresse email\r\n";
             $entete = 'From: '."contact@transversal.fr\r\n".
                 'Reply-To: '."contact@transversal.fr\r\n".
                 'X-Mailer: PHP/'.phpversion();

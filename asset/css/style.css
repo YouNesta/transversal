@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "Noto Serif";
+    src: url('../fonts/NotoSerif.ttf');
+}
+@font-face {
+    font-family: "Viner";
+    src: url('../fonts/Viner.ttf');
+}
 a:visited{
     color: #ffffff;
     text-decoration: none;
@@ -6,139 +14,118 @@ a{
     color: #ffffff;
     text-decoration: none;
 }
-.nav {
-    height: 10vh;
-    width: 100vw;
+input{
+    height: 4vh;
+    width: 20vw;
+    font-size: 3vh;
+    text-align: center;
+}
+input[type="radio"]{
+    width: 1vw;
+}
+textarea{
+    font-size: 3vh;
+}
+button[type='submit']{
+    position: relative;
+    top: 10px;
     background-color: #000000;
     color: #ffffff;
-    display: inline-block;
-
-
+    margin-top: 1vh;
+    border: 1px solid green;
+    font-size: 180%;
+    cursor:pointer;
+    max-height:3.5vw;
+    width: 3.5vw;
+    border-radius:50% ;
 }
-    .nav ul{
-        text-align: center;
-        font-size: 3vh;
-        margin-left: 10vw;
-    }
-        .nav ul>li{
-            display: inline-block;
-            line-height: 10vh;
-            min-width: 10vw;
-        }
-            .nav li>a{
-                padding: 3vh 5vw;
-                background-repeat: no-repeat;
-                background-position: center;
-
-            }
-            .nav #profil{
-                background-image: url("../images/header/profil.png");
-                background-size: 6vh;
-            }
-            .nav li>a[href="?p=user_logout"]{
-                background-image: url("../images/header/UserLogout.png");
-                background-size: 6vh;
-            }
-            .nav li>a[href="?p=user_add"]{
-                 background-image: url("../images/header/UserAdd.png");
-                 background-size: 6vh;
-             }
-            .nav li>a[href="?p=show_contact"]{
-                background-image: url("../images/header/contact.png");
-                background-size: 8vh;
-            }
-            .nav li>a[href="#"]{
-                background-image: url("../images/header/catalog.png");
-                background-size: 7vh;
-            }
-            .nav li>a[href="index.php#"]{
-                background-image: url("../images/header/Logo.png");
-                background-size: 7vh;
-            }
-            .nav li>a[href="?p=user_login"]{
-                background-image: url("../images/header/userLogin.png");
-                background-size: 8vh;
-            }
 
 .wrapper{
-     height: 90vh;
-     width: 100vw;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
      background-repeat: no-repeat;
      background-image: url("../images/background.jpg");
-     background-size: 100vw 90vh;
+     background-size: 100vw 100vh;
  }
-    .wrapperLeft{
-        height: 90vh;
-        width: 0;
-        background-color: rgba(66,66,66,0.5);
+    .nav{
+        background: rgba(0, 0, 0, 0.5);
+        height: 100vh;
+        width: 14.5vw;
         float: left;
-        text-align: center;
     }
-                .wrapperLeft div:first-child>img{
-                    border :10px solid #ffffff;
-                    border-radius: 50%;
-                    background-color: black;
-                    display: inline-block;
-                    height: 11vh;
-                    width: 5.5vw;
-                    padding: 1vw;
-                    margin-top: 5vh;
-
-                }
-        .wrapperLeft h2{
+        .nav img{
+            height: 30vh;
             margin-top: 5vh;
-            font-size: 4vh;
-
         }
-            .wrapperLeft ul>li{
-                font-size: 3vh;
-                border-bottom: 1px solid grey;
-                margin: 0 auto 2vh auto;
-
-            }
-    #contentWL{
-        height: 80vh;
-        width: 18vw;
-
-        opacity: 0;
-        margin-bottom: 10vh;
-    }
-    .wrapperRight{
-        background-color: rgba(66,66,66,0.5);
-        margin:0;
-        padding: 0;
-        position: absolute;
-        top: 22.5vh;
-        left: 19vw;
-        height: 70vh;
-        width: 65vw;
-    }
-        .wrapperRight form[action="?p=user_login"]{
-            margin-top: 20vh;
+        .nav>ul{
+            font-family: 'Noto Serif';
             text-align: center;
-            height: 10vh;
         }
-        .wrapperRight form[action="?p=user_login"]>input{
-            height: 5vh;
-            width: 15vw;
-            font-size: 5vh;
-            margin-top:1vh;
+        .nav>ul li{
+            margin-top: 6vh;
+            margin-bottom: 1.5vh;
         }
-        .wrapperRight form[action="?p=user_login"] input[type="submit"]{
-            border:0 none;
-            background-color: #000000;
-            color: white;
-            padding:0 0 5vw 0;  }
+            .nav .socialMedia{
+                display: inline-block;
+                margin: 0;
+            }
+                .socialMedia img{
+                    height: 05vh;
+                }
+    
+    .wrapperRight{
+        background: rgba(0, 0, 0, 0.5);
+        height: 88vh;
+        margin: 6vh 0 6vh 17vw;
+        width: 80vw;
+        font-family: 'Noto Serif';
+        color: #ffffff;
+
+    }
+    .wrapperRight>div{
+        padding: 15vh 0 0 5vw ;
+        width: 45vw;
+    }
+            .wrapperRight h1{
+                font-size: 300%;
+            }
+            .wrapperRight h2{
+                font-size: 150%;
+            }
+            .logo{
+                font-family: 'Viner';
+                font-size: 350%;
+                color: darkgrey;
+                text-align: right;
+            }
+    form{
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+
+    }
+    form>h2{
+        margin-top: 2vh;
+        margin-bottom: 1vh;
+        font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+
+    }
+.products{
+    height: 20vh;
+}
+    .footer{
+        height: 17vh;
+    }
 .flashBag{
-    top: 10vh;
+    bottom: 0vh;
     clear: both;
-    left: 20vw;
+    left: 25vw;
     position: absolute;
     border-width: 1vh 1vw ;
     border-style: solid;
     border-color: #d6d69b;
-    height: 10vh;
-    width: 58vw;
+    height: 9vh;
+    width: 60vw;
     background-color: #fdfdb5;
     color: black;
     font-size: 4vh;
@@ -154,12 +141,3 @@ a{
     .flashBag[role="3"]{
         color: #000000;
     }
-    #footer{
-        position: absolute;
-        bottom: 0.5vh;
-        right: 0.5vh;
-}
-#footer img{
-    height: 4vh;
-}
-

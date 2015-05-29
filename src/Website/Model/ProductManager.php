@@ -5,6 +5,7 @@
  * Date: 12/05/15
  * Time: 11:55
  */
+
 namespace Website\Model;
 
 class ProductManager
@@ -14,12 +15,6 @@ class ProductManager
         $this->bdd = $param;
     }
 
-
-
-     /**
-
-
-      */
     function listProducts()
     {
        $sql = 'SELECT p.id, p.name, c.name as class, s.name as subclass

@@ -1,0 +1,7 @@
+doctrine:
+  host: db576719810.db.1and1.com
+  dbname: db576719810
+  user: dbo576719810
+  password: edcrfvtgb
+  driver: pdo_mysql
+

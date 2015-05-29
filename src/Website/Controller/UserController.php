@@ -5,6 +5,7 @@
  * Date: 15/05/15
  * Time: 22:54
  */
+
 namespace Website\Controller;
 use Website\Model\UserManager;
 
@@ -18,11 +19,11 @@ class UserController extends AbstractBaseController
     public function listUsersAction()
     {
 
-        $userManager = new UserManager($this->getConnection());
+        $userManager = new UserManager($this->bdd);
         $users = $userManager->getUsers();
 
         return [
-            'view' => '../src/WebSite/View/user/listUser.html.php',
+            'view' => '../src/Website/View/user/listUser.html.php',
             'users' => $users
         ];
     }
@@ -32,7 +33,7 @@ class UserController extends AbstractBaseController
         $users = $userManager->getUser($request['session']['id']);
 
         return [
-            'view' => '../src/WebSite/View/user/showUser.html.php',
+            'view' => '../src/Website/View/user/showUser.html.php',
             'users' => $users
         ];
     }
@@ -53,6 +54,7 @@ class UserController extends AbstractBaseController
                 $request['request']['postalCode'],
                 $request['request']['subscription']
             );
+        if($response){
             if($response['verifForm'] == 'ok'){
                 if($response['mailCheck'] == 'yes'){
                     $this->addMessageFlash(0, "un mail vient d'etre envoyé, pour confirmer votre adresse mail");
@@ -73,6 +75,13 @@ class UserController extends AbstractBaseController
                     'errorLog' => $response['errorLog']
                 ];
             }
+        }else{
+            $this->addMessageFlash(1, "N'essayez-vous pas de vous inscrire une seconde fois ?");
+            return [
+                'redirect_to' => 'index.php?p=user_add'
+            ];
+        }
+
         }
         return [
             'view' => 'src/Website/View/user/userAdd.html.php'
@@ -150,7 +159,7 @@ class UserController extends AbstractBaseController
             else{
                 $this->addMessageFlash(1, 'Erreur Serveur veuillez contacter notre service client');
                 return [
-                    'redirect_to' => 'index.php?p=show_addUser',
+                    'redirect_to' => 'index.php?p=user_add',
                 ];
             }
         }

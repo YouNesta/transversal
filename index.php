@@ -19,6 +19,7 @@ if (!empty($routes[$page]['controller'])) {
 }
 
 $controller = new $controller_class();
+
 if (
     $routes[$page]['secure'] === true && !isset($_SESSION['user'])) {
     //Met en session un message informatif
@@ -30,6 +31,7 @@ if (
 $request['request'] = &$_POST;
 $request['query'] = &$_GET;
 $request['session'] = &$_SESSION;
+
 $response = $controller->$action_name($request);
 
 if(isset($response['redirect_to'])){  /** Test Redirection */

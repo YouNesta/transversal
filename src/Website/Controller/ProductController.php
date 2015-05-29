@@ -1,10 +1,14 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: Younes
+ * Date: 15/05/15
+ * Time: 22:54
+ */
 namespace Website\Controller;
 use Website\Model\ProductManager;
 
-class ProductController extends AbstractBaseController
-{
+class ProductController extends AbstractBaseController{
 
     public function __construct()
     {
@@ -35,7 +39,7 @@ class ProductController extends AbstractBaseController
         $products = $productManager->ListProducts();
     }
         return [
-            'view' => 'src/WebSite/View/product/listProducts.html.php',
+            'view' => 'src/Website/View/product/listProducts.html.php',
             'products' => $products
         ];
     }
@@ -46,7 +50,7 @@ class ProductController extends AbstractBaseController
         $product = $productManager->showProduct($request['request']['id']);
 
         return [
-            'view' => 'src/WebSite/View/product/showProduct.html.php',
+            'view' => 'src/Website/View/product/showProduct.html.php',
             'product' => $product
         ];
     }
@@ -62,7 +66,7 @@ class ProductController extends AbstractBaseController
         }
 
         return [
-            'view' => 'src/WebSite/View/Product/addProduct.html.php',
+            'view' => 'src/Website/View/Product/addProduct.html.php',
         ];
     }
 
@@ -71,7 +75,7 @@ class ProductController extends AbstractBaseController
         $productManager = new ProductManager($this->getConnection());
         $productManager->showProduct($request['request']['name']);
         return [
-            'redirect_to' => 'index.php',
+            'redirect_to' => 'index.php?p=product_list',
         ];
     }
 }
