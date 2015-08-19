@@ -9,12 +9,12 @@
 
 <form  method="post" id="add-form" action="index.php?p=user_add" >
     <div class="left">
-    <h2 class="form-label">Nom de famille:</h2>
+    <h2 class="form-label">Nom de famille*:</h2>
     <input class="text" id="last-name" spellcheck="false" name="lastname" placeholder="Zamor"><br/>
     <h2 class="form-label">Prénom:</h2>
     <input class="text" id="first-name" spellcheck="false" name="firstname" placeholder="Julien"><br/>
 
-    <h2 class="form-label">Date de naissance:</h2>
+    <h2 class="form-label">Date de naissance*:</h2>
     <select id="day"
             name="day" />
     <?php;
@@ -59,14 +59,14 @@
     </select><br/>
     </div>
     <div class="">
-    <h2 class="form-label">Email:</h2>
+    <h2 class="form-label">Email*:</h2>
     <input class="text" id="email" name="email" spellcheck="false"><br/>
 
-    <h2 class="form-label">Mots de passe:</h2>
+    <h2 class="form-label">Mots de passe*:</h2>
     <input type="password"  id="password" name="password" placeholder="Password"/><br>
     <input type="password" id="passwordCheck" name="passwordCheck" placeholder="Password"/><br>
 
-    <h2 class="form-label">Adress:</h2>
+    <h2 class="form-label">Adress*:</h2>
     <input type="address" id="adress" name="adress" placeholder="21 Jump Street"/><br>
     <input type="text" id="city" name="city" placeholder="Kingston"/><br>
     <input type="number" id="postalCode" name="postalCode" placeholder="75000"/><br>

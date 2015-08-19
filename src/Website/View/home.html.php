@@ -14,4 +14,4 @@
     <div>
     <h1>Bienvenue sur le site</h1>
     <h1 class="logo">Evenir</h1>
-    <h2>Le site adapté a tout les evenements</h2></div>
+    <h2>Le site adapté à tous les évènements</h2></div>

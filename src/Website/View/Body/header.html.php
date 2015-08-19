@@ -25,7 +25,7 @@
         <a id="logo" href="index.php#"><img src="asset/images/logoWhite.png" alt=""/></a>
         <ul>
             <li><a id="home" href="?p=show_home">Accueil</a></li>
-            <li><a id="catalog" href="?p=product_list">Gallerie</a></li>
+            <li><a id="catalog" href="?p=product_list">Galerie</a></li>
             <!-- href="?p=show_profilUser" -->
             <?php if(isset($_SESSION['user'])) {echo '<li><a id="profil" href="?p=show_profilUser">Mon Compte</a></li> <li><a id="userLogout" href="?p=user_logout">Déconnexion</a></li>';}else{echo '<li><a id="userLogin" href="?p=user_login">Se connecter</a></li><li><a id="UserAdd" href="?p=user_add">Inscription</a></li>';}?>
             <li><a id="contact" href="?p=show_contact">Contact</a></li>
